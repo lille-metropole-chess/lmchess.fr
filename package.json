@@ -10,14 +10,20 @@
   "dependencies": {
     "@astrojs/markdoc": "^1.0.3",
     "@astrojs/node": "^10.0.5",
+    "@astrojs/partytown": "^2.1.7",
     "@astrojs/react": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.3",
+    "@keystatic/astro": "^5.1.0",
+    "@keystatic/core": "^0.5.50",
+    "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "astro": "^6.1.8",
+    "astro-mail-obfuscation": "^2.3.4",
+    "astro-robots-txt": "^1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@keystatic/astro": "^5.1.0",
-    "@keystatic/core": "^0.5.50"
+    "tailwindcss": "^4.3.0"
   },
   "scripts": {
     "dev": "astro dev",
