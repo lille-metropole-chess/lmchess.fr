@@ -1,31 +1,69 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
 export const prerender = true;
-
-const posts = await getCollection('posts');
 ---
 
 <Layout title="Keystatic & Astro's Content Collections">
-  <div>
-    <h1>Keystatic ⚡️ + Astro 🚀</h1>
-    <p>
-      This homepage shows how to load data from Astro's content collections.
-    </p>
-    <p>
-      <a href="/keystatic">Click here to visit the Admin UI</a>, or the link
-      below to view a post in the collection.
-    </p>
-    <h2>Posts</h2>
-    <ul>
-      {
-        posts.map(post => (
+  <div class="hero">
+    <div class="hero-header">
+      <img class="hero-logo" src="/img/lmc_logo.jpg" alt="LMC logo" />
+      <h1>Le site internet du LMC</h1>
+    </div>
+
+    <div class="columns">
+      <div class="col">
+        <ul>
           <li>
-            <a href={`/posts/${post.id}`}>{post.data.title}</a>
+            Le Club
+            <ul>
+              <li>S’y rendre</li>
+              <li>Inscription</li>
+              <li>Nos partenaires</li>
+            </ul>
           </li>
-        ))
-      }
-    </ul>
+
+          <li>
+            Nos équipes
+            <ul>
+              <li>Interclubs</li>
+              <li>Coupe Loubatière</li>
+              <li>Coupe de la Parité</li>
+              <li>Coupe de France</li>
+            </ul>
+          </li>
+
+          <li>
+            Lille Métropole Chess Tour
+            <ul>
+              <li>Edition 26-27</li>
+              <li>Edition 27-28...</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <ul>
+          <li>
+            Débuter aux échecs
+            <ul>
+              <li>Ressources pédagogiques</li>
+              <li>Le guide de la compétition</li>
+            </ul>
+          </li>
+
+          <li>
+            Blog
+            <ul>
+              <li>Le LMC en compétition</li>
+              <li>Histoires des échecs</li>
+            </ul>
+          </li>
+
+          <li>Boutique</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </Layout>
