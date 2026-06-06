@@ -1,1 +1,6 @@
 node_modules
+.astro 
+.vercel 
+.vscode 
+dist
+build
