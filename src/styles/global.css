@@ -50,13 +50,13 @@ body {
 
 .columns {
 	display: flex;
-	gap: 40px;
+	gap: 160px;
 	justify-content: space-between;
 	align-items: flex-start;
 }
 
 .col {
-	width: 48%;
+	width: 48%;	
 }
 
 .col > ul {

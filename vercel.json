@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "build": {
+    "command": "npm run build",
+    "outputDirectory": ".vercel/output"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs24.x"
+    }
+  }
+}

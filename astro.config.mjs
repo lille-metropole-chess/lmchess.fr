@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 import keystatic from '@keystatic/astro';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -15,9 +15,9 @@ import mailObfuscation from 'astro-mail-obfuscation';
 import robotsTxt from 'astro-robots-txt';
 
 // https://astro.build/config
+// https://astro.build/config
 export default defineConfig({
-  output: 'server',
-  adapter: node({ mode: 'standalone' }),
+  adapter: vercel(),
   integrations: [react(), markdoc(), keystatic(), partytown(), sitemap(), mailObfuscation(), robotsTxt()],
 
   vite: {
