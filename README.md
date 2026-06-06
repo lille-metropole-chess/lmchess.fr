@@ -29,3 +29,7 @@ npx vercel --prod
 ```
 
 Your site will be served from the Vercel domain, not `http://127.0.0.1:4321/`.
+
+### Note
+
+The project uses `vercel.json` with Vercel Platform configuration only. Keep build settings in the Vercel dashboard, and leave the output directory blank.
