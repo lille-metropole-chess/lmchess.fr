@@ -22,6 +22,28 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 		<body class="site">
+			<header class="site-header">
+				<a class="site-logo" href="/">Lille Métropole Chess</a>
+				<nav class="main-nav">
+					<a href="#club">Le Club</a>
+					<a href="#teams">Nos équipes</a>
+					<a href="#tour">Chess Tour</a>
+					<a href="#beginner">Débuter</a>
+					<a href="#blog">Blog</a>
+					<a href="#shop">Boutique</a>
+				</nav>
+				<details class="mobile-menu">
+					<summary>Menu</summary>
+					<nav>
+						<a href="#club">Le Club</a>
+						<a href="#teams">Nos équipes</a>
+						<a href="#tour">Chess Tour</a>
+						<a href="#beginner">Débuter</a>
+						<a href="#blog">Blog</a>
+						<a href="#shop">Boutique</a>
+					</nav>
+				</details>
+			</header>
 			<main class="page">
 				<slot />
 			</main>
