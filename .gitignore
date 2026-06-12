@@ -1,6 +1,8 @@
 node_modules
-.astro 
-.vercel 
-.vscode 
+.astro
+.vercel
+.vscode
 dist
 build
+.env
+.env.local

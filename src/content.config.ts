@@ -10,4 +10,11 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+const chessTours = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/chessTours' }),
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
+export const collections = { posts, chessTours };
