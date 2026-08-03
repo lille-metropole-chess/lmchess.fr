@@ -7,17 +7,142 @@ export const prerender = true;
 const { slug } = Astro.params;
 if (!slug) throw new Error('Slug not found');
 const tour = await getEntry('chessTours', slug);
-
 if (!tour) throw new Error('No chess tour found for this slug');
+
 const { Content } = await render(tour);
+
+// All tournaments belonging to this chess tour edition, sorted by date
+const allTournaments = await getCollection(
+  'tournaments',
+  (t) => t.data.tourEditionSlug === slug
+);
+allTournaments.sort((a, b) =>
+  (a.data.date ?? '').localeCompare(b.data.date ?? '')
+);
+
+// Aggregate scores per player across tournaments
+// FIDE ID is the canonical key; fall back to uppercased name
+type PlayerRow = {
+  name: string;
+  scores: (number | null)[];  // one entry per tournament slot, null = did not play
+  total: number;
+};
+
+const playerMap = new Map<string, PlayerRow>();
+
+for (let ti = 0; ti < allTournaments.length; ti++) {
+  for (const r of allTournaments[ti].data.results) {
+    const key = r.fideId?.trim() || r.name.trim().toUpperCase();
+    if (!playerMap.has(key)) {
+      playerMap.set(key, {
+        name: r.name,
+        scores: Array(allTournaments.length).fill(null),
+        total: 0,
+      });
+    }
+    const row = playerMap.get(key)!;
+    row.scores[ti] = r.score;
+    row.total += r.score;
+    // Keep the most recent (last-seen) name spelling
+    row.name = r.name;
+  }
+}
+
+const ranking = [...playerMap.values()].sort(
+  (a, b) => b.total - a.total || a.name.localeCompare(b.name)
+);
+
+const hasResults = ranking.length > 0;
+
+// Format score: 7.5 → "7½", 7.0 → "7", etc.
+function fmt(score: number | null): string {
+  if (score === null) return '—';
+  const whole = Math.floor(score);
+  return score % 1 === 0.5 ? `${whole}½` : `${whole}`;
+}
 
 export async function getStaticPaths() {
   const chessTours = await getCollection('chessTours');
-  return chessTours.map(tour => ({ params: { slug: tour.id } }));
+  return chessTours.map((tour) => ({ params: { slug: tour.id } }));
 }
 ---
 
 <Layout title={tour.data.title}>
-  <h1 style="text-align: center; font-size: clamp(2rem, 6vw, 4rem); font-weight: 400;">{tour.data.title}</h1>
+  <h1 class="tour-title">{tour.data.title}</h1>
+
   <div class="prose"><Content /></div>
+
+  {hasResults && (
+    <section class="ranking-section">
+      <h2 class="ranking-heading">Classement général</h2>
+      <div class="table-wrapper">
+        <table class="ranking-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th class="col-name">Joueur</th>
+              {allTournaments.map((t) => (
+                <th class="col-tournament" title={t.data.name}>{t.data.name}</th>
+              ))}
+              <th class="col-total">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ranking.map((player, i) => (
+              <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+                <td class="col-rank">{i + 1}</td>
+                <td class="col-name">{player.name}</td>
+                {player.scores.map((score) => (
+                  <td class="col-score">{fmt(score)}</td>
+                ))}
+                <td class="col-total">{fmt(player.total)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  {allTournaments.map((t) => (
+    <section class="tournament-section">
+      <h2 class="tournament-heading">{t.data.name}</h2>
+      {t.data.date && (
+        <p class="tournament-meta">
+          {new Date(t.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+          {t.data.rounds ? ` · ${t.data.rounds} rondes` : ''}
+        </p>
+      )}
+      {t.data.results.length > 0 ? (
+        <div class="table-wrapper">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="col-name">Joueur</th>
+                <th>Cat.</th>
+                <th>Club</th>
+                <th>Élo</th>
+                <th class="col-total">Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {t.data.results.map((r, i) => (
+                <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+                  <td class="col-rank">{r.place}</td>
+                  <td class="col-name">{r.name}</td>
+                  <td>{r.category ?? '—'}</td>
+                  <td>{r.club ?? '—'}</td>
+                  <td class="col-score">{r.rating ?? '—'}</td>
+                  <td class="col-total">{fmt(r.score)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p class="no-results">Résultats à venir.</p>
+      )}
+    </section>
+  ))}
 </Layout>

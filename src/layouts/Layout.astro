@@ -17,30 +17,33 @@ const { title } = Astro.props;
 			<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 		<body class="site">
 			<header class="site-header">
+				
+				<a class="site-logo" href="/"><img class="hero-logo" src="/img/lmc_logo.jpg" alt="LMC logo" /></a>
 				<a class="site-logo" href="/">Lille Métropole Chess</a>
+
 				<nav class="main-nav">
-					<a href="#club">Le Club</a>
-					<a href="#teams">Nos équipes</a>
-					<a href="#tour">Chess Tour</a>
-					<a href="#beginner">Débuter</a>
-					<a href="#blog">Blog</a>
-					<a href="#shop">Boutique</a>
+					<a href="/club">Le Club</a>
+					<a href="/#teams">Joueurs</a>
+					<a href="/#tour">Évènements</a>
+					<a href="/contact">Contact</a>
+					<!-- <a href="/#blog">Blog</a> -->
+					<a href="https://www.helloasso.com/associations/lille-metropole-chess/boutiques/textiles-lmc">Boutique</a>
 				</nav>
 				<details class="mobile-menu">
 					<summary>Menu</summary>
 					<nav>
-						<a href="#club">Le Club</a>
-						<a href="#teams">Nos équipes</a>
-						<a href="#tour">Chess Tour</a>
-						<a href="#beginner">Débuter</a>
-						<a href="#blog">Blog</a>
-						<a href="#shop">Boutique</a>
+						<a href="/club">Le Club</a>
+						<a href="/#teams">Joueurs</a>
+						<a href="/#tour">Évènements</a>
+						<a href="/contact">Contact</a>
+						<!-- <a href="/#blog">Blog</a> -->
+						<a href="https://www.helloasso.com/associations/lille-metropole-chess/boutiques/textiles-lmc">Boutique</a>
 					</nav>
 				</details>
 			</header>

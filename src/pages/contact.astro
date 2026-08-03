@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sent = Astro.url.searchParams.get('sent');
+export const prerender = false;
+---
+
+<Layout title="Contact - Lille Métropole Chess">
+	<section class="contact">
+		<div class="contact-info">
+			<p class="contact-eyebrow">Contact</p>
+			<h1 class="contact-title">Rejoignez le club</h1>
+			<p class="contact-lead">
+				Que vous soyez débutant ou joueur confirmé, Lille Métropole Chess vous
+				accueille toute l'année. Venez nous rencontrer lors d'une soirée
+				portes ouvertes ou écrivez-nous pour plus d'informations.
+			</p>
+			<dl class="contact-meta">
+				<div>
+					<dt>Adresse</dt>
+					<dd>Salle Camelot, 9 rue de la Halle 59000 LILLE</dd> 
+                        <!-- <a href="https://maps.app.goo.gl/DHft9EJBYwpKVXbD8" target="_blank" rel="noopener noreferrer">
+                            <img class="google-logo" src="/img/google_map_icon.jpg" alt="LMC logo" />
+                        </a> -->
+				</div>
+				<div>
+					<dt>Email</dt>
+					<dd>contact@lmchess.fr</dd>
+				</div>
+				<div>
+					<dt>Horaires</dt>
+					<dd>Mar–Ven 18h–22h · Sam 14h–18h</dd>
+				</div>
+			</dl>
+		</div>
+
+		<form class="contact-form" method="POST" action="/api/contact">
+			{sent === 'ok' && <p class="contact-status contact-status-ok">Merci, votre message a bien été envoyé !</p>}
+			{sent === 'error' && <p class="contact-status contact-status-error">Une erreur est survenue, réessayez ou écrivez-nous directement par email.</p>}
+			<input type="text" name="name" placeholder="Votre nom" required />
+			<input type="email" name="email" placeholder="Votre email" required />
+			<textarea name="message" placeholder="Votre message..." required></textarea>
+			<button type="submit" class="contact-submit">
+				Envoyer <span aria-hidden="true">→</span>
+			</button>
+		</form>
+	</section>
+
+    <div align="center">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2530.0661233357514!2d3.0601773999999997!3d50.644463099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c32b0001fc198f%3A0xdb39988628af5e40!2sSalle%20Camelot!5e0!3m2!1sfr!2sfr!4v1785713042233!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+</Layout>

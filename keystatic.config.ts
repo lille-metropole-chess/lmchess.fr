@@ -18,11 +18,6 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
-        tournament: fields.relationship({
-          label: 'Related Tournament',
-          collection: 'tournaments',
-          description: 'Link this post to a Chess Tour edition',
-        }),
         content: fields.markdoc({
           label: 'Content',
           options: {
@@ -34,34 +29,38 @@ export default config({
         }),
       },
     }),
-    players: collection({
-      label: 'Players',
-      slugField: 'name',
-      path: 'src/content/players/*',
-      schema: {
-        name: fields.slug({ name: { label: 'Player Name' } }),
-        rating: fields.integer({ label: 'Current Rating' }),
-        joinDate: fields.date({ label: 'Join Date' }),
-        bio: fields.text({
-          label: 'Bio',
-          description: 'Player biography or notes',
-        }),
-      },
-    }),
     tournaments: collection({
       label: 'Tournaments',
       slugField: 'name',
       path: 'src/content/tournaments/*',
+      format: { data: 'yaml' },
       schema: {
         name: fields.slug({ name: { label: 'Tournament Name' } }),
-        edition: fields.text({ label: 'Edition (e.g., 26-27)' }),
-        date: fields.date({ label: 'Tournament Date' }),
-        location: fields.text({ label: 'Location' }),
-        rounds: fields.integer({ label: 'Number of Rounds', defaultValue: 9 }),
-        description: fields.text({
-          label: 'Description',
-          description: 'Tournament details and rules',
+        tourEditionSlug: fields.text({
+          label: 'Chess Tour Edition Slug',
+          description: 'Must match the slug of the Chess Tour edition (e.g. edition-25-26)',
         }),
+        date: fields.date({ label: 'Date' }),
+        rounds: fields.integer({ label: 'Number of Rounds', defaultValue: 9 }),
+        results: fields.array(
+          fields.object({
+            place: fields.integer({ label: 'Place' }),
+            fideId: fields.text({
+              label: 'FIDE ID',
+              description: 'FIDE licence number — used to identify the same player across tournaments. Leave empty if none.',
+            }),
+            name: fields.text({ label: 'Player Name' }),
+            rating: fields.integer({ label: 'Rating' }),
+            category: fields.text({ label: 'Category (e.g. SenM, JunF)' }),
+            club: fields.text({ label: 'Club' }),
+            score: fields.number({ label: 'Score (e.g. 7.5 for 7½)' }),
+          }),
+          {
+            label: 'Results',
+            itemLabel: (props) =>
+              `${props.fields.place.value}. ${props.fields.name.value} — ${props.fields.score.value} pts`,
+          }
+        ),
       },
     }),
     chessTours: collection({
@@ -79,31 +78,6 @@ export default config({
               publicPath: '/img/',
             },
           },
-        }),
-      },
-    }),
-    tournamentResults: collection({
-      label: 'Tournament Results',
-      slugField: 'slug',
-      path: 'src/content/tournamentResults/*',
-      schema: {
-        slug: fields.slug({
-          name: { label: 'Result Slug' },
-        }),
-        tournament: fields.relationship({
-          label: 'Tournament',
-          collection: 'tournaments',
-          description: 'Select the tournament for these results',
-        }),
-        edition: fields.text({ label: 'Edition' }),
-        playerName: fields.text({ label: 'Player Name' }),
-        score: fields.text({ label: 'Score (e.g., 7/9)' }),
-        points: fields.number({ label: 'Points Earned' }),
-        placement: fields.integer({ label: 'Final Placement' }),
-        rating: fields.integer({ label: 'Rating at Time' }),
-        notes: fields.text({
-          label: 'Notes',
-          description: 'Performance notes or results details',
         }),
       },
     }),

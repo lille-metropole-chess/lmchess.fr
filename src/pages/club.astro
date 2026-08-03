@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const boardMembers = [
+    { photo: 'oriane.jpeg', firstName: 'Oriane', role: 'Secrétaire' },
+    { photo: 'patrick.jpeg', firstName: 'Patrick', role: 'Responsable Accueil des nouveaux joueurs' },
+    { photo: 'serge.png', firstName: 'Serge', role: 'Responsable matériel ' },
+    { photo: 'sylvain.jpeg', firstName: 'Sylvain', role: 'Président' },
+    { photo: 'tanguy.jpeg', firstName: 'Tanguy', role: 'Al Tangone' },
+    { photo: 'thomas.jpeg', firstName: 'Thomas', role: 'Responsable Événements et Directeur du Lille Métropole Chess Tour' },
+    { photo: 'alex.jpeg', firstName: 'Alex', role: 'Trésorier' },
+];
+---
+
+<Layout title="Le Club">
+    <h1 class="club-title">
+        Page Présentation du club + philosophie du club <br>
+        Page mot du président, projet associatif (?)
+    </h1>
+
+    <section class="ca-section">
+        <h2 class="ca-heading">Le Conseil d'Administration</h2>
+        <div class="ca-grid">
+            {boardMembers.map(member => (
+                <div class="ca-card">
+                    <img class="ca-photo" src={`/img/CA/${member.photo}`} alt={member.firstName} />
+                    <p class="ca-name">{member.firstName}</p>
+                    <p class="ca-role">{member.role}</p>
+                </div>
+            ))}
+        </div>
+    </section>
+</Layout>
