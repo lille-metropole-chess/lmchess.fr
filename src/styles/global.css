@@ -35,6 +35,12 @@ body {
 	z-index: 10;
 }
 
+.site-brand {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
 .site-logo {
 	font-weight: 700;
 	font-size: 1.05rem;
@@ -169,7 +175,7 @@ body {
 }
 
 @media (max-width: 700px) {
-	.columns { flex-direction: column; }
+	.columns { flex-direction: column; gap: 24px; }
 	.col { width: 100%; }
 	.hero h1 { font-size: 32px; }
 }
