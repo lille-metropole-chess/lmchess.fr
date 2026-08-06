@@ -6,7 +6,7 @@ const chessTours = await getCollection('chessTours');
 export const prerender = true;
 ---
 
-<Layout title="Keystatic & Astro's Content Collections">
+<Layout title="Lille Métropole Chess">
   <div class="hero">
     <div class="hero-header">
       <h1>Bienvenue au LMC</h1>
@@ -16,20 +16,20 @@ export const prerender = true;
       <div class="col">
         <ul>
           <li id="club">
-            Le Club
+            <a href="/club" target="_blank" rel="noopener noreferrer"><strong>Le Club</strong></a>
             <ul>
-              <li>Contact</li>
-              <li>Inscription</li>
+              <li><a href="/contact" target="_blank" rel="noopener noreferrer">Contact/S'y rendre</a></li>
+              <li><a href="/inscription" target="_blank" rel="noopener noreferrer">Inscription</a></li>
               <li>Nos partenaires</li>
             </ul>
           </li>
 
           <li id="teams">
-            <a href="https://echecs.asso.fr/ListeEquipes.aspx?ClubRef=1348">Nos équipes</a>
+            <a href="/teams" target="_blank" rel="noopener noreferrer"> <strong>Nos équipes</strong></a>
           </li>
 
           <li id="tour">
-            Lille&nbsp;Métropole&nbsp;Chess&nbsp;Tour
+            <a href="/chess-tours" target="_blank" rel="noopener noreferrer"> <strong>Lille Métropole Chess Tour</strong></a>
             <ul>
               {chessTours.map(tour => (
                 <li>
@@ -44,7 +44,7 @@ export const prerender = true;
       <div class="col">
         <ul>
           <li id="beginner">
-            Débuter aux échecs
+            <strong>Débuter aux échecs</strong>
             <ul>
               <li>Le guide de la compétition</li>
               <li><a href="https://drive.google.com/drive/u/0/folders/1xSvnu9TUJ8HJfWn86HZLvtggFEAnhCIh" target="_blank" rel="noopener noreferrer">Ressources pédagogiques</a></li>
@@ -52,14 +52,14 @@ export const prerender = true;
           </li>
 
           <li id="blog">
-            Blog
+            <strong>Blog</strong>
             <ul>
               <li>Le LMC en compétition</li>
               <li>Histoires des échecs</li>
             </ul>
           </li>
 
-          <li id="shop"> <a href="https://www.helloasso.com/associations/lille-metropole-chess/boutiques/textiles-lmc">Boutique</a></li>
+          <li id="shop"> <a href="https://www.helloasso.com/associations/lille-metropole-chess/boutiques/textiles-lmc" target="_blank" rel="noopener noreferrer"> <strong>Boutique</strong></a></li>
         </ul>
       </div>
     </div>

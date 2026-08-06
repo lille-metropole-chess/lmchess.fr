@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Equipes - Lille Métropole Chess">
+    <section class="teams-section">
+        <h2 class="teams-heading"> 
+            Suivre les équipes du club sur le site de la FFE 
+            <img width="20" height="20" src="/img/icons/finger.png" alt="finger" />
+            <button type="button" class="teams-link-button" onclick="window.open('https://echecs.asso.fr/ListeEquipes.aspx?ClubRef=1348', '_blank')"> Ici</button>
+        </h2> 
+            
+        <h1 class="teams-title">Les compétitions par équipes</h1>
+        <p class="teams-lead">
+            En France, les compétitions par équipes organisées sous l'égide de la Fédération Française des Échecs (FFE) permettent aux clubs de s'affronter tout au long de la saison. Elles sont organisées selon une pyramide de divisions, avec un système de montées et de descentes.
+        </p>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">Les interclubs « toutes catégories »</h2>
+            <p>C'est la compétition phare des clubs.</p>
+            <ul>
+                <li><strong>Top 16</strong> : la plus haute division nationale, réunissant les 16 meilleurs clubs français. Le club vainqueur est sacré champion de France des clubs.</li>
+                <li><strong>Nationale 1 (N1)</strong> : deuxième division, répartie en plusieurs groupes géographiques.</li>
+                <li><strong>Nationale 2 (N2)</strong> : troisième division.</li>
+                <li><strong>Nationale 3 (N3)</strong> : quatrième division.</li>
+                <li><strong>Nationale 4 (N4)</strong> : cinquième division, gérée par les ligues régionales.</li>
+                <li><strong>Divisions régionales et départementales</strong> : organisées par les ligues et les comités départementaux, elles permettent aux clubs de débuter la compétition.</li>
+            </ul>
+            <p>Selon la division, une équipe est généralement composée de 8 joueurs, avec certaines obligations réglementaires (par exemple la présence d'au moins une joueuse française jusqu'en Nationale 2).</p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">Les interclubs jeunes</h2>
+            <p>Ils sont réservés aux joueurs de catégories jeunes (U8 à U20). Ils comprennent :</p>
+            <ul>
+                <li>le Top Jeunes (élite),</li>
+                <li>la Nationale I Jeunes,</li>
+                <li>la Nationale II Jeunes,</li>
+                <li>puis des divisions régionales selon les ligues.</li>
+            </ul>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">Le championnat féminin des clubs</h2>
+            <p>Cette compétition est distincte des interclubs mixtes et comprend notamment :</p>
+            <ul>
+                <li>le Top 16 féminin,</li>
+                <li>la Nationale 1 féminine,</li>
+                <li>puis des divisions régionales selon les ligues.</li>
+            </ul>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">Les coupes par équipes</h2>
+            <p>La FFE organise également plusieurs compétitions à élimination directe :</p>
+            <ul>
+                <li><strong>Coupe de France</strong> : ouverte aux clubs, avec des équipes de 4 joueurs.</li>
+                <li><strong>Coupe Loubatière</strong> : destinée aux joueurs amateurs (limite Elo).</li>
+                <li><strong>Coupe 2000</strong> : réservée aux joueurs dont le classement est inférieur à un seuil fixé par le règlement.</li>
+                <li><strong>Coupe de la Parité</strong> : équipes mixtes composées de femmes et d'hommes.</li>
+            </ul>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">Déroulement d'une saison</h2>
+            <p>La saison fédérale s'étend du 1er septembre au 31 août, mais les rencontres d'interclubs se disputent principalement d'octobre à avril. Les équipes gagnent des points de match et, en fin de saison, les meilleures sont promues tandis que les moins bien classées sont reléguées.</p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">Où consulter les compétitions ?</h2>
+            <p>La FFE met à disposition une page regroupant les championnats nationaux, régionaux et départementaux, avec les calendriers, résultats, classements et archives :</p>
+            <p><button type="button" class="teams-link-button" onclick="window.open('https://www.echecs.asso.fr/Equipes.aspx?Groupe=3103', '_blank')">Compétitions par équipes de la FFE</button></p>
+            <p>Vous y trouverez les interclubs adultes, les interclubs jeunes, les compétitions féminines ainsi que les différentes coupes.</p>
+        </div>
+    </section>
+</Layout>
