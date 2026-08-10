@@ -28,16 +28,24 @@ export const prerender = true;
             <a href="/teams" ><strong>Nos équipes</strong></a>
           </li>
 
-          <li id="tour">
-            <a href="/chess-tours" ><strong>Lille Métropole Chess Tour</strong></a>
+          <li id="events">  
+            <a href="/events" ><strong>Évènements</strong></a>
             <ul>
-              {chessTours.map(tour => (
-                <li>
-                  <a href={`/chess-tours/${tour.id}`}>{tour.data.title}</a>
-                </li>
-              ))}
+              <li id="tour">
+                <a href="/chess-tours" ><strong>Lille Métropole Chess Tour</strong></a>
+                <ul>
+                  {chessTours.map(tour => (
+                    <li>
+                      <a href={`/chess-tours/${tour.id}`}>{tour.data.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+
+              <li id="tournaments">
+                <a href="/tournaments" ><strong>Tournois et compétitions ordinaires</strong></a>
+              </li>
             </ul>
-          </li>
         </ul>
       </div>
 

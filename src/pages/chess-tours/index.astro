@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const chessTours = await getCollection('chessTours');
+chessTours.sort((a, b) => b.id.localeCompare(a.id));
+---
+
+<Layout title="Lille Métropole Chess Tour - Lille Métropole Chess">
+  <h1 class="tour-title">Lille Métropole Chess Tour</h1>
+
+  
+  <ul class="edition-list">
+    {chessTours.map((tour) => (
+      <li>
+        <a class="edition-link" href={`/chess-tours/${tour.id}`}>
+          <span>{tour.data.title}</span>
+          <span class="edition-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Layout>
