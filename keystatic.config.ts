@@ -38,7 +38,8 @@ export default config({
         name: fields.slug({ name: { label: 'Tournament Name' } }),
         tourEditionSlug: fields.text({
           label: 'Chess Tour Edition Slug',
-          description: 'Must match the slug of the Chess Tour edition (e.g. edition-25-26)',
+          description:
+            'Laisser vide pour un tournoi ordinaire. Pour un tournoi du Chess Tour, doit correspondre au slug de l\'édition (ex. edition-25-26)',
         }),
         date: fields.date({ label: 'Date' }),
         rounds: fields.integer({ label: 'Number of Rounds', defaultValue: 9 }),
@@ -60,6 +61,46 @@ export default config({
             itemLabel: (props) =>
               `${props.fields.place.value}. ${props.fields.name.value} — ${props.fields.score.value} pts`,
           }
+        ),
+        poster: fields.image({
+          label: 'Affiche',
+          directory: 'public/img/tournaments',
+          publicPath: '/img/tournaments/',
+        }),
+        helloAssoUrl: fields.text({ label: 'Lien HelloAsso (inscription)' }),
+        keyInfo: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Libellé' }),
+            value: fields.text({ label: 'Valeur' }),
+          }),
+          {
+            label: 'Informations clés',
+            itemLabel: (props) => props.fields.label.value || 'Info',
+          }
+        ),
+        accommodations: fields.array(
+          fields.object({
+            name: fields.text({ label: 'Nom de l’hôtel' }),
+            url: fields.text({ label: 'Lien' }),
+            phone: fields.text({ label: 'Téléphone' }),
+            discountCode: fields.text({ label: 'Code de réduction' }),
+            discountInfo: fields.text({
+              label: 'Comment en bénéficier',
+              multiline: true,
+            }),
+          }),
+          {
+            label: 'Hébergement',
+            itemLabel: (props) => props.fields.name.value || 'Hôtel',
+          }
+        ),
+        ffeResultsUrl: fields.text({ label: 'Lien résultats FFE' }),
+        winnerPhotos: fields.array(
+          fields.image({
+            directory: 'public/img/tournaments',
+            publicPath: '/img/tournaments/',
+          }),
+          { label: 'Photos des gagnants' }
         ),
       },
     }),

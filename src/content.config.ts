@@ -26,14 +26,33 @@ const resultSchema = z.object({
   score: z.number(),
 });
 
+const hotelSchema = z.object({
+  name: z.string(),
+  url: z.string().optional(),
+  phone: z.string().optional(),
+  discountCode: z.string().optional(),
+  discountInfo: z.string().optional(),
+});
+
+const keyInfoSchema = z.object({
+  label: z.string(),
+  value: z.string(),
+});
+
 const tournaments = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/tournaments' }),
   schema: z.object({
     name: z.string(),
-    tourEditionSlug: z.string(),
+    tourEditionSlug: z.string().optional(),
     date: z.string().optional(),
     rounds: z.number().optional(),
     results: z.array(resultSchema).default([]),
+    poster: z.string().optional(),
+    helloAssoUrl: z.string().optional(),
+    keyInfo: z.array(keyInfoSchema).default([]),
+    accommodations: z.array(hotelSchema).default([]),
+    ffeResultsUrl: z.string().optional(),
+    winnerPhotos: z.array(z.string()).default([]),
   }),
 });
 

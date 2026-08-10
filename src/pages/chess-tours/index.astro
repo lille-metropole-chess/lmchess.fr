@@ -6,12 +6,58 @@ export const prerender = true;
 
 const chessTours = await getCollection('chessTours');
 chessTours.sort((a, b) => b.id.localeCompare(a.id));
+
+const tourFormats = [
+  {
+    name: 'Open Classique',
+    description:
+      "Le tournoi phare du circuit, en cadence longue et ouvert à tous les niveaux. Plusieurs rondes disputées sur la journée pour départager les joueurs sur la durée.",
+  },
+  {
+    name: 'Tournoi de la Paire de Fous',
+    description:
+      "Un format original qui se joue en binôme : chaque paire associe un joueur confirmé et un joueur moins expérimenté, dans un esprit d'entraide et de convivialité.",
+  },
+  {
+    name: 'Triathlon',
+    description:
+      "Trois cadences (classique, rapide et blitz) cumulées sur une même journée, pour récompenser les joueurs les plus complets du circuit.",
+  },
+  {
+    name: 'Festival de tournois fermés',
+    description:
+      "Plusieurs tournois répartis par niveau, réunissant des joueurs de force comparable pour garantir des parties équilibrées à chaque table.",
+  },
+  {
+    name: 'Blitz international',
+    description:
+      "Le tournoi qui clôture le circuit, en cadence blitz et ouvert aux joueurs internationaux, dans une ambiance rythmée et électrique.",
+  },
+];
 ---
 
 <Layout title="Lille Métropole Chess Tour - Lille Métropole Chess">
   <h1 class="tour-title">Lille Métropole Chess Tour</h1>
 
-  
+  <p class="tour-intro">
+    Le Lille Métropole Chess Tour est le circuit annuel du club : une série de cinq tournois aux formats complémentaires,
+    du plus classique au plus original, qui rythment la saison et permettent à chaque joueur de trouver sa cadence de prédilection.
+    Les résultats de chaque édition sont cumulés dans un classement général.
+  </p>
+
+  <section class="format-section">
+    <h2 class="format-heading">Les cinq tournois du circuit</h2>
+    <div class="format-grid">
+      {tourFormats.map((format) => (
+        <div class="format-card">
+          <h3 class="format-title">{format.name}</h3>
+          <p class="format-desc">{format.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <h2 class="format-heading">Les éditions</h2>
   <ul class="edition-list">
     {chessTours.map((tour) => (
       <li>

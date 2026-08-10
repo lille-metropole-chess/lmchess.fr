@@ -1,0 +1,130 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  data: CollectionEntry<'tournaments'>['data'];
+  breadcrumbHref: string;
+  breadcrumbLabel: string;
+}
+
+const { data, breadcrumbHref, breadcrumbLabel } = Astro.props;
+
+const hasResults = data.results.length > 0;
+const ranking = [...data.results].sort((a, b) => a.place - b.place);
+
+// Format score: 7.5 → "7½", 7.0 → "7", etc.
+function fmt(score: number): string {
+  const whole = Math.floor(score);
+  return score % 1 === 0.5 ? `${whole}½` : `${whole}`;
+}
+---
+
+<a class="breadcrumb-link" href={breadcrumbHref}>&larr; {breadcrumbLabel}</a>
+
+<h1 class="tour-title">{data.name}</h1>
+{(data.date || data.rounds) && (
+  <p class="tournament-meta tournament-meta-centered">
+    {data.date && new Date(data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+    {data.date && data.rounds ? ' · ' : ''}
+    {data.rounds ? `${data.rounds} rondes` : ''}
+  </p>
+)}
+
+{data.poster && (
+  <img class="tournament-poster" src={data.poster} alt={`Affiche - ${data.name}`} />
+)}
+
+{data.helloAssoUrl && (
+  <p class="tournament-cta-wrapper">
+    <a class="tournament-cta" href={data.helloAssoUrl} target="_blank" rel="noopener">
+      S'inscrire sur HelloAsso
+    </a>
+  </p>
+)}
+
+{data.keyInfo.length > 0 && (
+  <section class="key-info-section">
+    <h2 class="format-heading">Informations clés</h2>
+    <dl class="key-info-list">
+      {data.keyInfo.map((info) => (
+        <div class="key-info-item">
+          <dt>{info.label}</dt>
+          <dd>{info.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+)}
+
+{data.accommodations.length > 0 && (
+  <section class="hebergement-section">
+    <h2 class="format-heading">Hébergement</h2>
+    <div class="format-grid">
+      {data.accommodations.map((hotel) => (
+        <div class="hotel-card">
+          <h3 class="hotel-name">{hotel.name}</h3>
+          {hotel.url && (
+            <p><a href={hotel.url} target="_blank" rel="noopener">{hotel.url}</a></p>
+          )}
+          {hotel.phone && (
+            <p><a href={`tel:${hotel.phone.replace(/\s+/g, '')}`}>{hotel.phone}</a></p>
+          )}
+          {hotel.discountCode && (
+            <p class="hotel-discount">
+              Code : <strong>{hotel.discountCode}</strong>
+              {hotel.discountInfo && ` — ${hotel.discountInfo}`}
+            </p>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+<section class="ranking-section">
+  <h2 class="ranking-heading">Résultats</h2>
+  {data.ffeResultsUrl && (
+    <p><a href={data.ffeResultsUrl} target="_blank" rel="noopener">Voir les résultats sur le site de la FFE</a></p>
+  )}
+  {hasResults ? (
+    <div class="table-wrapper">
+      <table class="ranking-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="col-name">Joueur</th>
+            <th>Cat.</th>
+            <th>Club</th>
+            <th>Élo</th>
+            <th class="col-total">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ranking.map((r, i) => (
+            <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+              <td class="col-rank">{r.place}</td>
+              <td class="col-name">{r.name}</td>
+              <td>{r.category ?? '—'}</td>
+              <td>{r.club ?? '—'}</td>
+              <td class="col-score">{r.rating ?? '—'}</td>
+              <td class="col-total">{fmt(r.score)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <p class="no-results">Résultats à venir.</p>
+  )}
+</section>
+
+{data.winnerPhotos.length > 0 && (
+  <section class="winners-section">
+    <h2 class="format-heading">Photos des gagnants</h2>
+    <div class="winner-gallery">
+      {data.winnerPhotos.map((photo) => (
+        <img src={photo} alt={`Gagnants - ${data.name}`} />
+      ))}
+    </div>
+  </section>
+)}

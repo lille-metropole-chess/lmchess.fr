@@ -104,45 +104,19 @@ export async function getStaticPaths() {
     </section>
   )}
 
-  {allTournaments.map((t) => (
+  {allTournaments.length > 0 && (
     <section class="tournament-section">
-      <h2 class="tournament-heading">{t.data.name}</h2>
-      {t.data.date && (
-        <p class="tournament-meta">
-          {new Date(t.data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
-          {t.data.rounds ? ` · ${t.data.rounds} rondes` : ''}
-        </p>
-      )}
-      {t.data.results.length > 0 ? (
-        <div class="table-wrapper">
-          <table class="ranking-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th class="col-name">Joueur</th>
-                <th>Cat.</th>
-                <th>Club</th>
-                <th>Élo</th>
-                <th class="col-total">Pts</th>
-              </tr>
-            </thead>
-            <tbody>
-              {t.data.results.map((r, i) => (
-                <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
-                  <td class="col-rank">{r.place}</td>
-                  <td class="col-name">{r.name}</td>
-                  <td>{r.category ?? '—'}</td>
-                  <td>{r.club ?? '—'}</td>
-                  <td class="col-score">{r.rating ?? '—'}</td>
-                  <td class="col-total">{fmt(r.score)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <p class="no-results">Résultats à venir.</p>
-      )}
+      <h2 class="format-heading">Les tournois de cette édition</h2>
+      <ul class="edition-list">
+        {allTournaments.map((t) => (
+          <li>
+            <a class="edition-link" href={`/chess-tours/${slug}/${t.id}`}>
+              <span>{t.data.name}</span>
+              <span class="edition-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
-  ))}
+  )}
 </Layout>

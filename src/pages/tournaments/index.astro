@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const tournaments = await getCollection('tournaments', (t) => !t.data.tourEditionSlug);
+tournaments.sort((a, b) => (b.data.date ?? '').localeCompare(a.data.date ?? ''));
+---
+
+<Layout title="Tournois et compétitions ordinaires - Lille Métropole Chess">
+  <h1 class="tour-title">Tournois et compétitions ordinaires</h1>
+
+  <p class="tour-intro">
+    Retrouvez ici les tournois et compétitions organisés par le club en dehors du Lille Métropole Chess Tour.
+  </p>
+
+  <ul class="edition-list">
+    {tournaments.map((t) => (
+      <li>
+        <a class="edition-link" href={`/tournaments/${t.id}`}>
+          <span>{t.data.name}</span>
+          <span class="edition-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Layout>

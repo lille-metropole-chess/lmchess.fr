@@ -1,0 +1,41 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import TournamentDetail from '../../../components/TournamentDetail.astro';
+
+export const prerender = true;
+
+const { slug, tournament: tournamentSlug } = Astro.params;
+if (!slug || !tournamentSlug) throw new Error('Slug not found');
+
+const edition = await getEntry('chessTours', slug);
+if (!edition) throw new Error('No chess tour found for this slug');
+
+const tournament = await getEntry('tournaments', tournamentSlug);
+if (!tournament || tournament.data.tourEditionSlug !== slug) {
+  throw new Error('No tournament found for this slug');
+}
+
+const { data } = tournament;
+
+export async function getStaticPaths() {
+  const [chessTours, tournaments] = await Promise.all([
+    getCollection('chessTours'),
+    getCollection('tournaments'),
+  ]);
+
+  return tournaments
+    .filter((t) => chessTours.some((edition) => edition.id === t.data.tourEditionSlug))
+    .map((t) => ({
+      params: { slug: t.data.tourEditionSlug, tournament: t.id },
+    }));
+}
+---
+
+<Layout title={`${data.name} - ${edition.data.title}`}>
+  <TournamentDetail
+    data={data}
+    breadcrumbHref={`/chess-tours/${slug}`}
+    breadcrumbLabel={edition.data.title}
+  />
+</Layout>

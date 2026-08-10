@@ -1,0 +1,30 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import TournamentDetail from '../../components/TournamentDetail.astro';
+
+export const prerender = true;
+
+const { slug } = Astro.params;
+if (!slug) throw new Error('Slug not found');
+
+const tournament = await getEntry('tournaments', slug);
+if (!tournament || tournament.data.tourEditionSlug) {
+  throw new Error('No tournament found for this slug');
+}
+
+const { data } = tournament;
+
+export async function getStaticPaths() {
+  const tournaments = await getCollection('tournaments', (t) => !t.data.tourEditionSlug);
+  return tournaments.map((t) => ({ params: { slug: t.id } }));
+}
+---
+
+<Layout title={data.name}>
+  <TournamentDetail
+    data={data}
+    breadcrumbHref="/tournaments"
+    breadcrumbLabel="Tournois et compétitions ordinaires"
+  />
+</Layout>
