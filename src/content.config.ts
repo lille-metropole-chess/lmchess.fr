@@ -9,10 +9,18 @@ const posts = defineCollection({
   }),
 });
 
+const partnerSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  logo: z.string().optional(),
+  url: z.string().optional(),
+});
+
 const chessTours = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/chessTours' }),
   schema: z.object({
     title: z.string(),
+    partners: z.array(partnerSchema).default([]),
   }),
 });
 

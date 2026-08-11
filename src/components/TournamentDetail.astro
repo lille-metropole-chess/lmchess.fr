@@ -17,6 +17,11 @@ function fmt(score: number): string {
   const whole = Math.floor(score);
   return score % 1 === 0.5 ? `${whole}½` : `${whole}`;
 }
+
+// Turn a day-range date like "19-23 Octobre 2026" into "19 à 23 Octobre 2026"
+function fmtDate(date: string): string {
+  return date.replace(/^(\d+)-(\d+)/, 'Du $1 au $2');
+}
 ---
 
 <a class="breadcrumb-link" href={breadcrumbHref}>&larr; {breadcrumbLabel}</a>
@@ -24,7 +29,7 @@ function fmt(score: number): string {
 <h1 class="tour-title">{data.name}</h1>
 {(data.date || data.rounds) && (
   <p class="tournament-meta tournament-meta-centered">
-    {data.date && new Date(data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+    {data.date && fmtDate(data.date)}
     {data.date && data.rounds ? ' · ' : ''}
     {data.rounds ? `${data.rounds} rondes` : ''}
   </p>
@@ -94,7 +99,6 @@ function fmt(score: number): string {
             <th>#</th>
             <th class="col-name">Joueur</th>
             <th>Cat.</th>
-            <th>Club</th>
             <th>Élo</th>
             <th class="col-total">Pts</th>
           </tr>
@@ -105,7 +109,6 @@ function fmt(score: number): string {
               <td class="col-rank">{r.place}</td>
               <td class="col-name">{r.name}</td>
               <td>{r.category ?? '—'}</td>
-              <td>{r.club ?? '—'}</td>
               <td class="col-score">{r.rating ?? '—'}</td>
               <td class="col-total">{fmt(r.score)}</td>
             </tr>

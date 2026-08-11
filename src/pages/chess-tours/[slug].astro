@@ -26,7 +26,14 @@ type PlayerRow = {
   name: string;
   scores: (number | null)[];  // one entry per tournament slot, null = did not play
   total: number;
+  gender: 'M' | 'F' | null;
 };
+
+// FFE category codes end with the player's gender letter (e.g. SenM, U16F)
+function genderFromCategory(category?: string): 'M' | 'F' | null {
+  const last = category?.trim().slice(-1).toUpperCase();
+  return last === 'M' || last === 'F' ? last : null;
+}
 
 const playerMap = new Map<string, PlayerRow>();
 
@@ -38,13 +45,15 @@ for (let ti = 0; ti < allTournaments.length; ti++) {
         name: r.name,
         scores: Array(allTournaments.length).fill(null),
         total: 0,
+        gender: null,
       });
     }
     const row = playerMap.get(key)!;
     row.scores[ti] = r.score;
     row.total += r.score;
-    // Keep the most recent (last-seen) name spelling
+    // Keep the most recent (last-seen) name spelling and gender
     row.name = r.name;
+    row.gender = genderFromCategory(r.category) ?? row.gender;
   }
 }
 
@@ -53,6 +62,9 @@ const ranking = [...playerMap.values()].sort(
 );
 
 const hasResults = ranking.length > 0;
+
+const topMen = ranking.filter((p) => p.gender === 'M').slice(0, 5);
+const topWomen = ranking.filter((p) => p.gender === 'F').slice(0, 5);
 
 // Format score: 7.5 → "7½", 7.0 → "7", etc.
 function fmt(score: number | null): string {
@@ -71,6 +83,60 @@ export async function getStaticPaths() {
   <h1 class="tour-title">{tour.data.title}</h1>
 
   <div class="prose"><Content /></div>
+
+  {(topMen.length > 0 || topWomen.length > 0) && (
+    <section class="ranking-section top5-section">
+      <h2 class="ranking-heading">Classement</h2>
+      <div class="top5-grid">
+        {topMen.length > 0 && (
+          <div class="table-wrapper">
+            <h3 class="top5-heading">Top 5 Masculin</h3>
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="col-name">Joueur</th>
+                  <th class="col-total">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topMen.map((player, i) => (
+                  <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+                    <td class="col-rank">{i + 1}</td>
+                    <td class="col-name">{player.name}</td>
+                    <td class="col-total">{fmt(player.total)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {topWomen.length > 0 && (
+          <div class="table-wrapper">
+            <h3 class="top5-heading">Top 5 Féminin</h3>
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th class="col-name">Joueuse</th>
+                  <th class="col-total">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topWomen.map((player, i) => (
+                  <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+                    <td class="col-rank">{i + 1}</td>
+                    <td class="col-name">{player.name}</td>
+                    <td class="col-total">{fmt(player.total)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
 
   {hasResults && (
     <section class="ranking-section">
@@ -117,6 +183,32 @@ export async function getStaticPaths() {
           </li>
         ))}
       </ul>
+    </section>
+  )}
+
+  {tour.data.partners.length > 0 && (
+    <section class="partners-section">
+      <h2 class="format-heading">Les partenaires du Tour</h2>
+      <div class="partners-grid">
+        {tour.data.partners.map((partner) => {
+          const card = (
+            <>
+              {partner.logo && (
+                <img class="partner-logo" src={partner.logo} alt={partner.name} loading="lazy" />
+              )}
+              <h3 class="partner-name">{partner.name}</h3>
+              {partner.description && <p class="partner-desc">{partner.description}</p>}
+            </>
+          );
+          return partner.url ? (
+            <a class="partner-card" href={partner.url} target="_blank" rel="noopener">
+              {card}
+            </a>
+          ) : (
+            <div class="partner-card">{card}</div>
+          );
+        })}
+      </div>
     </section>
   )}
 </Layout>

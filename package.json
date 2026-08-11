@@ -30,9 +30,12 @@
     "start": "node ./dist/server/entry.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "results:fetch": "node scripts/fetch-ffe-results.mjs"
   },
   "devDependencies": {
-    "@astrojs/vercel": "^10.0.8"
+    "@astrojs/vercel": "^10.0.8",
+    "cheerio": "^1.2.0",
+    "yaml": "^2.9.0"
   }
 }
