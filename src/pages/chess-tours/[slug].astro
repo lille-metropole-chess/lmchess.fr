@@ -83,7 +83,23 @@ export async function getStaticPaths() {
   <h1 class="tour-title">{tour.data.title}</h1>
 
   <div class="prose"><Content /></div>
-
+  
+  {allTournaments.length > 0 && (
+    <section class="tournament-section">
+      <h2 class="format-heading">Les tournois de cette édition</h2>
+      <ul class="edition-list">
+        {allTournaments.map((t) => (
+          <li>
+            <a class="edition-link" href={`/chess-tours/${slug}/${t.id}`}>
+              <span>{t.data.name}</span>
+              <span class="edition-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  
   {(topMen.length > 0 || topWomen.length > 0) && (
     <section class="ranking-section top5-section">
       <h2 class="ranking-heading">Classement</h2>
@@ -167,22 +183,6 @@ export async function getStaticPaths() {
           </tbody>
         </table>
       </div>
-    </section>
-  )}
-
-  {allTournaments.length > 0 && (
-    <section class="tournament-section">
-      <h2 class="format-heading">Les tournois de cette édition</h2>
-      <ul class="edition-list">
-        {allTournaments.map((t) => (
-          <li>
-            <a class="edition-link" href={`/chess-tours/${slug}/${t.id}`}>
-              <span>{t.data.name}</span>
-              <span class="edition-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        ))}
-      </ul>
     </section>
   )}
 
