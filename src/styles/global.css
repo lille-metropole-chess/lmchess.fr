@@ -392,6 +392,18 @@ body {
 	text-decoration: none;
 }
 
+.partner-card--link {
+	cursor: pointer;
+	transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.partner-card--link:hover,
+.partner-card--link:focus-visible {
+	border-color: rgba(0,0,0,.2);
+	box-shadow: 0 4px 12px rgba(0,0,0,.1);
+	transform: translateY(-2px);
+}
+
 .partner-logo {
 	max-width: 100%;
 	max-height: 80px;
@@ -410,6 +422,22 @@ body {
 	color: #555;
 	font-size: 0.9rem;
 	line-height: 1.5;
+}
+
+.partners-plain-grid {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 32px;
+	margin-top: 24px;
+	margin-bottom: 48px;
+}
+
+.partner-logo-plain {
+	max-height: 70px;
+	max-width: 160px;
+	object-fit: contain;
 }
 
 /* Le Club - Mot du Président */

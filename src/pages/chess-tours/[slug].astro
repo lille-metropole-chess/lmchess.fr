@@ -205,7 +205,7 @@ export async function getStaticPaths() {
             </>
           );
           return partner.url ? (
-            <a class="partner-card" href={partner.url} target="_blank" rel="noopener">
+            <a class="partner-card partner-card--link" href={partner.url} target="_blank" rel="noopener">
               {card}
             </a>
           ) : (

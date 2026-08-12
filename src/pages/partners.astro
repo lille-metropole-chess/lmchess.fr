@@ -1,0 +1,78 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+
+const contentPartners = await getCollection('partners');
+
+const logoDir = path.join(process.cwd(), 'public/partners');
+const logoFiles = fs
+  .readdirSync(logoDir)
+  .filter((file) => /\.(png|jpe?g|webp|svg)$/i.test(file));
+
+const usedLogos = new Set(
+  contentPartners
+    .map((p) => p.data.logo)
+    .filter((logo): logo is string => Boolean(logo))
+    .map((logo) => logo.replace('/partners/', ''))
+);
+
+function altFromFilename(file: string) {
+  return file
+    .replace(/\.[^.]+$/, '')
+    .replace(/[-_.]+/g, ' ')
+    .trim();
+}
+
+const otherLogos = logoFiles
+  .filter((file) => !usedLogos.has(file))
+  .map((file) => ({ file, alt: altFromFilename(file) }))
+  .sort((a, b) => a.alt.localeCompare(b.alt));
+---
+
+<Layout title="Nos partenaires - Lille Métropole Chess">
+  <section class="partners-section">
+    <h1 class="teams-title">Nos partenaires</h1>
+    <p>
+      Le Lille Métropole Chess remercie ses partenaires qui soutiennent le
+      club et ses événements tout au long de la saison.
+    </p>
+
+    {contentPartners.length > 0 && (
+      <div class="partners-grid">
+        {contentPartners.map(({ data: partner }) => {
+          const card = (
+            <>
+              {partner.logo && (
+                <img class="partner-logo" src={partner.logo} alt={partner.name} loading="lazy" />
+              )}
+              <h2 class="partner-name">{partner.name}</h2>
+              {partner.description && <p class="partner-desc">{partner.description}</p>}
+            </>
+          );
+          return partner.url ? (
+            <a class="partner-card partner-card--link" href={partner.url} target="_blank" rel="noopener">
+              {card}
+            </a>
+          ) : (
+            <div class="partner-card">{card}</div>
+          );
+        })}
+      </div>
+    )}
+
+    {otherLogos.length > 0 && (
+      <>
+        <h2 class="teams-heading">Ils nous soutiennent</h2>
+        <div class="partners-plain-grid">
+          {otherLogos.map(({ file, alt }) => (
+            <img class="partner-logo-plain" src={`/partners/${file}`} alt={alt} loading="lazy" />
+          ))}
+        </div>
+      </>
+    )}
+  </section>
+</Layout>
