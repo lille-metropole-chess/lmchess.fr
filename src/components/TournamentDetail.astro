@@ -89,7 +89,7 @@ function fmtDate(date: string): string {
 <section class="ranking-section">
   <h2 class="ranking-heading">Résultats</h2>
   {data.ffeResultsUrl && (
-    <p><a href={data.ffeResultsUrl} target="_blank" rel="noopener">Voir les résultats sur le site de la FFE</a></p>
+    <p><a class="ffe-link" href={data.ffeResultsUrl} target="_blank" rel="noopener">Voir les résultats sur le site de la FFE</a></p>
   )}
   {hasResults ? (
     <div class="table-wrapper">

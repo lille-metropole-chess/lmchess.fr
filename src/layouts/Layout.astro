@@ -37,7 +37,7 @@ const { title } = Astro.props;
 					<a href="/events">Évènements</a>
 					<a href="/contact">Contact</a>
 					<!-- <a href="/#blog">Blog</a> -->
-					<a href="https://www.helloasso.com/associations/lille-metropole-chess/boutiques/textiles-lmc" target="_blank" rel="noopener noreferrer">Boutique</a>
+					<a href="https://www.helloasso.com/associations/lille-metropole-chess" target="_blank" rel="noopener noreferrer">Boutique</a>
 				</nav>
 				<details class="mobile-menu">
 					<summary>Menu</summary>
@@ -47,15 +47,23 @@ const { title } = Astro.props;
 						<a href="/events">Évènements</a>
 						<a href="/contact">Contact</a>
 						<!-- <a href="/#blog">Blog</a> -->
-						<a href="https://www.helloasso.com/associations/lille-metropole-chess/boutiques/textiles-lmc" target="_blank" rel="noopener noreferrer">Boutique</a>
+						<a href="https://www.helloasso.com/associations/lille-metropole-chess" target="_blank" rel="noopener noreferrer">Boutique</a>
 					</nav>
 				</details>
 			</header>
 			<main class="page">
 				<slot />
 			</main>
+
 			<footer class="site-footer">
-				<p>© 2026 Lille Métropole Chess</p>
+				<div class="footer-logos">
+					<img src="/img/lmc_logo.jpg" alt="Lille Métropole Chess" />
+					<img src="/img/ffe_logo.jpg" alt="Fédération Française des Échecs" />
+					<img src="/img/hautdefrance_logo.png" alt="Région Hauts-de-France" />
+					<img src="/img/departement_nord_logo.jpg" alt="Département du Nord" />
+					<img src="/img/villedelille_logo.jpg" alt="Ville de Lille" />
+				</div>
+				<p>©Gia-Thuy Pham et LMC 2026</p>
 			</footer>
 		</body>
 </html>

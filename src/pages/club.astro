@@ -2,22 +2,167 @@
 import Layout from '../layouts/Layout.astro';
 
 const boardMembers = [
-    { photo: 'oriane.jpeg', firstName: 'Oriane', role: 'Secrétaire' },
-    { photo: 'patrick.jpeg', firstName: 'Patrick', role: 'Responsable Accueil des nouveaux joueurs' },
-    { photo: 'serge.png', firstName: 'Serge', role: 'Responsable matériel ' },
-    { photo: 'sylvain.jpeg', firstName: 'Sylvain', role: 'Président' },
-    { photo: 'tanguy.jpeg', firstName: 'Tanguy', role: 'Al Tangone' },
-    { photo: 'thomas.jpeg', firstName: 'Thomas', role: 'Responsable Événements et Directeur du Lille Métropole Chess Tour' },
-    { photo: 'alex.jpeg', firstName: 'Alex', role: 'Trésorier' },
-    { photo: 'gia-thuy.jpg', firstName: 'Gia-Thuy', role: 'Webmaster' },
+    { photo: 'sylvain.jpeg', firstName: 'Sylvain', role: 'Président', email: 'sylvduva@gmail.com ' },    
+    { photo: 'oriane.jpeg', firstName: 'Oriane', role: 'Secrétaire', email: 'oriane.soubirou@hei.fr ' },
+    { photo: 'alex.jpeg', firstName: 'Alex', role: 'Trésorier', email: 'alexandre.lillemc@gmail.com' },
+    { photo: 'thomas.jpeg', firstName: 'Thomas', role: 'Responsable Événements et Directeur du Lille Métropole Chess Tour', email: 'thomaslen@orange.fr' },
+    { photo: 'patrick.jpeg', firstName: 'Patrick', role: 'Responsable Accueil des nouveaux joueurs', email: '' },
+    { photo: 'gia-thuy.jpg', firstName: 'Gia-Thuy', role: 'Webmaster', email: '' },
+    { photo: 'serge.png', firstName: 'Serge', role: 'Responsable matériel', email: '' },
+    { photo: 'tanguy.jpeg', firstName: 'Tanguy', role: 'Al Tangone', email: '' },
 ];
 ---
 
 <Layout title="Le Club - Lille Métropole Chess">
-    <h1 class="club-title">
-        Page Présentation du club + philosophie du club <br>
-        Page mot du président, projet associatif (?)
-    </h1>
+    <section class="teams-section">
+        <h1 class="teams-title">Notre projet associatif et sportif</h1>
+        
+        <div class="teams-block">
+            <h2 class="teams-heading">Un club d'échecs pour jouer, progresser et partager</h2>
+            <p>
+                Depuis sa création en 2000, <strong>Lille Métropole Chess</strong> porte une vision simple : faire
+                des échecs un sport passionnant, mais aussi un formidable moyen de se rencontrer
+                et de partager.
+            </p>
+            <p>
+                Notre ambition est de proposer à Lille un club <strong>dynamique, convivial et ouvert</strong>,
+                dans lequel chacun peut trouver sa place, quels que soient son niveau, son âge ou
+                ses objectifs.
+            </p>
+            <p>
+                Que vous souhaitiez découvrir la compétition, progresser, jouer régulièrement en
+                tournoi, représenter le club en équipe ou simplement partager quelques parties
+                dans une ambiance conviviale, <strong>vous êtes les bienvenus au LMC</strong>.
+            </p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">♟️ Progresser et vivre la compétition</h2>
+            <p>La dimension sportive occupe une place importante dans notre projet.</p>
+            <p>
+                Nous souhaitons permettre à chaque joueuse et chaque joueur de <strong>progresser à son
+                rythme</strong>, du débutant au compétiteur confirmé, tout en offrant de nombreuses
+                occasions de jouer.
+            </p>
+            <p>
+                Le club développe notamment les <strong>interclubs</strong>, les compétitions féminines, la Coupe
+                Loubatière et les compétitions par équipes mixtes. Il accompagne également la
+                formation de ses joueuses et joueurs ainsi que de nouveaux arbitres.
+            </p>
+            <p>
+                Notre objectif à long terme est de disposer d'équipes à différents niveaux afin
+                que chacun puisse trouver une compétition correspondant à son niveau et à ses
+                ambitions.
+            </p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">🏆 Un club qui organise et fait vivre les échecs</h2>
+            <p>Au LMC, les échecs ne se limitent pas aux rencontres d'interclubs.</p>
+            <p>
+                Tout au long de la saison, nous souhaitons proposer une programmation riche :
+                <strong>tournois de blitz, rapides, parties classiques, festivals et grands événements</strong>.
+            </p>
+            <p>
+                Pour la saison 2026-2027, nous avons créé le Lille Métropole Chess Tour, un
+                circuit structuré de 5 évènements différents tout au long de la saison : un open
+                classique, un tournoi par équipe de 2, un triathlon, un festival de tournois
+                fermés et un open de blitz.
+            </p>
+            <p>
+                Cette dynamique événementielle permet à chacun de jouer régulièrement, de
+                découvrir de nouveaux adversaires et de vivre les échecs sous différentes formes.
+            </p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">🤝 Plus qu'un club : une communauté</h2>
+            <p>La convivialité est au cœur de l'identité du Lille Métropole Chess.</p>
+            <p>
+                Nous voulons préserver un club où l'on vient bien sûr <strong>pour jouer aux échecs</strong>, mais
+                aussi pour retrouver d'autres passionnés, échanger, apprendre les uns des autres
+                et passer de bons moments ensemble.
+            </p>
+            <p>
+                Repas partagés, événements conviviaux et temps informels rythment ainsi la saison
+                et permettent de créer des liens au-delà de l'échiquier. Le club prévoit notamment
+                l'organisation régulière d'auberges espagnoles et d'un repas de fin d'année.
+            </p>
+            <p>
+                L'entraide et la transmission font également partie de notre fonctionnement : les
+                joueurs expérimentés partagent leurs connaissances et participent à la progression
+                collective.
+            </p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">♀️♂️ Un club ouvert et inclusif</h2>
+            <p>Nous voulons que <strong>chacun puisse trouver sa place au LMC</strong>.</p>
+            <p>
+                La diversité des profils et la mixité femmes-hommes constituent une richesse pour
+                le club. Nous développons donc les équipes féminines, les compétitions mixtes et
+                des événements spécifiquement consacrés à la parité.
+            </p>
+            <p>
+                Plus largement, nous défendons une pratique des échecs fondée sur le respect,
+                l'inclusion, l'éthique et le plaisir de jouer ensemble.
+            </p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">🚀 Notre ambition pour 2030</h2>
+            <p>
+                Dans les prochaines années, Lille Métropole Chess souhaite poursuivre son
+                développement sans perdre ce qui constitue son identité. Notre projet repose sur
+                quatre grandes ambitions :
+            </p>
+            <ul>
+                <li><strong>développer la pratique sportive</strong>, de la découverte jusqu'à la compétition de haut niveau ;</li>
+                <li><strong>multiplier les occasions de jouer</strong>, grâce à des tournois et événements tout au long de l'année ;</li>
+                <li><strong>favoriser la mixité, la diversité et l'inclusion</strong> ;</li>
+                <li><strong>préserver une vie de club conviviale</strong>, fondée sur les rencontres, l'entraide et le partage.</li>
+            </ul>
+            <p>
+                Notre objectif est de faire du Lille Métropole Chess une référence régionale : un
+                club performant sur l'échiquier, dynamique dans ses événements et chaleureux dans
+                sa vie associative.
+            </p>
+        </div>
+
+        <div class="teams-block">
+            <h2 class="teams-heading">Envie de nous rejoindre ?</h2>
+            <p><strong>Débutant, joueur de club ou compétiteur confirmé : venez pousser la porte du LMC.</strong></p>
+            <p>
+                Vous pourrez jouer, progresser, participer à des tournois, rejoindre une équipe…
+                et surtout rencontrer une communauté de passionnés.
+            </p>
+            <p><strong>À très bientôt autour d'un échiquier !</strong></p>
+        </div>
+    </section>
+
+    <section class="president-section">
+        <h2 class="president-heading">Le mot du Président</h2>
+        <div class="president-content">
+            <p>Bienvenue au <strong>Lille Métropole Chess</strong> !</p>
+            <p>
+                Notre club rassemble des <strong>joueuses et joueurs de tous niveaux </strong>autour d'une même
+                passion : les échecs.
+            </p>
+            <p>
+                Que vous souhaitiez apprendre, progresser, participer à des compétitions ou
+                simplement jouer, vous trouverez au LMC <strong>une place pour vous et de nombreuses
+                occasions de partager de bons moments autour de l'échiquier.</strong>
+            </p>
+            <p>
+                Notre projet repose sur des valeurs simples : <strong>convivialité, partage, entraide, mixité et plaisir de jouer ensemble</strong>.
+            </p>
+            <p>Au plaisir de vous accueillir prochainement au LMC !</p>
+        </div>
+        <p class="president-signature">
+            Sylvain DUVAL
+            <span class="president-role">Président du Lille Métropole Chess</span>
+        </p>
+    </section>
 
     <section class="ca-section">
         <h2 class="ca-heading">Le Conseil d'Administration</h2>
@@ -27,6 +172,11 @@ const boardMembers = [
                     <img class="ca-photo" src={`/img/CA/${member.photo}`} alt={member.firstName} />
                     <p class="ca-name">{member.firstName}</p>
                     <p class="ca-role">{member.role}</p>
+                    {member.email && (
+                        <p class="ca-email">
+                            <a href={`mailto:${member.email}`}>{member.email}</a>
+                        </p>
+                    )}
                 </div>
             ))}
         </div>

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(lsof -ti:4322 -sTCP:LISTEN)",
+      "Bash(lsof -ti:4321,4322 -sTCP:LISTEN)",
+      "Bash(curl -sf http://localhost:4321/contact -o /tmp/contact_out2.html)",
+      "Read(//Applications/Google Chrome.app/Contents/MacOS/**)",
+      "Read(//Applications/**)",
+      "Bash(mdfind \"kMDItemFSName == 'Google Chrome.app'\")",
+      "Bash(node shot.js)",
+      "Bash(grep -n \"^p \\\\|^p{\\\\|^p,\\\\| p {\" /Users/gtpham/python_projects/lmc/lmchess.fr/src/styles/global.css)",
+      "Bash(curl -sf http://localhost:4321/club -o /tmp/club_check.html)",
+      "Bash(grep -n \"^a\\\\b\\\\|^a,\\\\|a {\\\\|a:link\\\\|a:visited\\\\|a:hover\\\\|text-decoration\" /Users/gtpham/python_projects/lmc/lmchess.fr/src/styles/global.css)",
+      "Bash(cd /Users/gtpython_projects 2>/dev/null; find src -iname \"*[Cc]hess[Tt]our*\")",
+      "Read(//Users/**)"
+    ]
+  }
+}

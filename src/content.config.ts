@@ -1,5 +1,5 @@
 // @ts-ignore
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const posts = defineCollection({
@@ -9,18 +9,21 @@ const posts = defineCollection({
   }),
 });
 
-const partnerSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  logo: z.string().optional(),
-  url: z.string().optional(),
+const partners = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/partners' }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string().optional(),
+    logo: z.string().optional(),
+    url: z.string().optional(),
+  }),
 });
 
 const chessTours = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/chessTours' }),
   schema: z.object({
     title: z.string(),
-    partners: z.array(partnerSchema).default([]),
+    partners: z.array(reference('partners')).default([]),
   }),
 });
 
@@ -64,4 +67,4 @@ const tournaments = defineCollection({
   }),
 });
 
-export const collections = { posts, chessTours, tournaments };
+export const collections = { posts, partners, chessTours, tournaments };

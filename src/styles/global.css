@@ -192,6 +192,21 @@ body {
 	margin: 0;
 }
 
+.footer-logos {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 24px;
+	margin-bottom: 16px;
+}
+
+.footer-logos img {
+	width: 90px;
+	height: 56px;
+	object-fit: contain;
+}
+
 .prose img {
 	max-width: 100%;
 	width: 600px;
@@ -262,6 +277,16 @@ body {
 	font-size: 1.25rem;
 	font-weight: 600;
 	margin-bottom: 4px;
+}
+
+.ffe-link {
+	color: #b8382b;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.ffe-link:hover {
+	color: #9c2f24;
 }
 
 .tournament-meta {
@@ -387,6 +412,52 @@ body {
 	line-height: 1.5;
 }
 
+/* Le Club - Mot du Président */
+.president-section {
+	max-width: 760px;
+	margin: 56px auto 0;
+	padding: 32px;
+	background: #faf6f5;
+	border-left: 4px solid #b8382b;
+	border-radius: 8px;
+}
+
+.president-heading {
+	font-family: 'Playfair Display', Georgia, serif;
+	font-weight: 700;
+	font-size: clamp(1.4rem, 4vw, 1.75rem);
+	margin: 0 0 20px;
+}
+
+.president-content p {
+	color: #333;
+	line-height: 1.6;
+	margin: 0 0 14px;
+}
+
+.president-content p:last-child {
+	margin-bottom: 0;
+}
+
+.president-signature {
+	margin: 20px 0 0;
+	font-weight: 700;
+}
+
+.president-role {
+	display: block;
+	font-weight: 400;
+	color: #666;
+	font-size: 0.9rem;
+	margin-top: 2px;
+}
+
+@media (max-width: 700px) {
+	.president-section {
+		padding: 24px 20px;
+	}
+}
+
 /* Le Club - Conseil d'Administration */
 .ca-section {
 	margin-top: 48px;
@@ -414,7 +485,7 @@ body {
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	object-position: top;
-	border-radius: 50%;
+	border-radius: 26%;
 	display: block;
 	margin: 0 auto 12px;
 }
@@ -565,10 +636,44 @@ body {
 	color: #a12b2b;
 }
 
+.contact-map {
+	text-align: center;
+}
+
+.contact-map iframe {
+	max-width: 100%;
+	border: 0;
+	margin: 0 auto;
+    display: block;
+}
+
 @media (max-width: 800px) {
 	.contact {
 		flex-direction: column;
+		align-items: stretch;
 		gap: 40px;
+	}
+}
+
+@media (max-width: 600px) {
+	.contact-meta > div {
+		flex-direction: column;
+		gap: 4px;
+		padding: 8px 0;
+	}
+
+	.contact-meta dt {
+		flex: none;
+	}
+
+	.contact-lead {
+		font-size: 1rem;
+		max-width: none;
+	}
+
+	.contact-map iframe {
+		width: 100%;
+		height: 320px;
 	}
 }
 

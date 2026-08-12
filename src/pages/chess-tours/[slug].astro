@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection, getEntries, getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export const prerender = true;
@@ -10,6 +10,10 @@ const tour = await getEntry('chessTours', slug);
 if (!tour) throw new Error('No chess tour found for this slug');
 
 const { Content } = await render(tour);
+
+const partners = tour.data.partners.length > 0
+  ? await getEntries(tour.data.partners)
+  : [];
 
 // All tournaments belonging to this chess tour edition, sorted by date
 const allTournaments = await getCollection(
@@ -186,11 +190,11 @@ export async function getStaticPaths() {
     </section>
   )}
 
-  {tour.data.partners.length > 0 && (
+  {partners.length > 0 && (
     <section class="partners-section">
       <h2 class="format-heading">Les partenaires du Tour</h2>
       <div class="partners-grid">
-        {tour.data.partners.map((partner) => {
+        {partners.map(({ data: partner }) => {
           const card = (
             <>
               {partner.logo && (
