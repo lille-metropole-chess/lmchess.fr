@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { resolveAsset } from '../lib/images';
-import salle from '../assets/img/lmc_site.jpeg';
 
 export const prerender = true;
 
@@ -59,15 +58,6 @@ const doors = [
       <a class="lp-btn-quiet" href="/inscription">Comment s'inscrire</a>
     </p>
   </section>
-
-  <div class="lp-bleed lp-hero-media">
-    <Image
-      src={salle}
-      alt="La salle Camelot un soir de club, tables alignées et parties en cours"
-      width={1082}
-      sizes="(max-width: 1280px) 100vw, 1280px"
-    />
-  </div>
 
   <section class="lp-practical" aria-labelledby="lp-practical-title">
     <h2 id="lp-practical-title" class="sr-only">Quand et où nous trouver</h2>
