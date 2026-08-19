@@ -1043,3 +1043,21 @@ h1 {
 	line-height: 1.6;
 	max-width: 62ch;
 }
+
+/* Entrée de menu annoncée mais pas encore ouverte */
+.nav-pending {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 6px;
+	color: #767676;
+	font-weight: 500;
+	cursor: default;
+}
+
+.nav-pending-tag {
+	font-size: 0.65rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #b8382b;
+}
