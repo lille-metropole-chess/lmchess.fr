@@ -16,6 +16,14 @@ body {
 	padding: 0;
 }
 
+h1 {
+	font-family: 'Playfair Display', Georgia, serif;
+	font-weight: 700;
+	font-size: clamp(1.5rem, 5vw, 2.25rem);
+	line-height: 1.2;
+	margin: 0 0 16px;
+}
+
 .page {
 	max-width: var(--max-width);
 	margin: 0 auto;
@@ -132,12 +140,6 @@ body {
 	display: block;
 }
 
-.hero h1 {
-	font-size: clamp(1.5rem, 5vw, 3rem);
-	font-weight: 400;
-	margin: 0;
-	text-align: center;
-}
 
 .columns {
 	display: flex;
@@ -216,12 +218,6 @@ body {
 }
 
 /* Chess Tour page */
-.tour-title {
-	text-align: center;
-	font-size: clamp(1.5rem, 5vw, 3rem);
-	font-weight: 400;
-	margin-bottom: 32px;
-}
 
 .tour-intro {
 	max-width: 720px;
@@ -551,13 +547,6 @@ body {
 	margin: 0 0 12px;
 }
 
-.contact-title {
-	font-family: 'Playfair Display', Georgia, serif;
-	font-weight: 700;
-	font-size: clamp(2rem, 5vw, 3rem);
-	margin: 0 0 28px;
-	line-height: 1.1;
-}
 
 .contact-lead {
 	color: #444;
@@ -735,12 +724,6 @@ body {
 	margin: 0 auto;
 }
 
-.teams-title {
-	font-family: 'Playfair Display', Georgia, serif;
-	font-weight: 700;
-	font-size: clamp(1.5rem, 5vw, 2.25rem);
-	margin-bottom: 16px;
-}
 
 .teams-lead {
 	color: #333;
@@ -957,13 +940,6 @@ body {
 }
 
 /* Events page */
-.events-title {
-	font-family: 'Playfair Display', Georgia, serif;
-	font-weight: 700;
-	font-size: clamp(1.5rem, 5vw, 2.25rem);
-	margin-bottom: 16px;
-	text-align: center;
-}
 /* Utilitaire : visible uniquement pour les technologies d'assistance */
 .sr-only {
 	position: absolute;
