@@ -328,7 +328,10 @@ h1 {
 
 .partners-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	/* Capped track: with two partners, 1fr stretched each card to 514px around
+	   an 80px logo, so more than a third of the card was empty. */
+	grid-template-columns: repeat(auto-fit, minmax(240px, 340px));
+	justify-content: start;
 	gap: 24px;
 }
 
@@ -374,21 +377,7 @@ h1 {
 	line-height: 1.5;
 }
 
-.partners-plain-grid {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	gap: 32px;
-	margin-top: 24px;
-	margin-bottom: 48px;
-}
 
-.partner-logo-plain {
-	max-height: 70px;
-	max-width: 160px;
-	object-fit: contain;
-}
 
 /* Le Club - Mot du Président */
 .president-section {
@@ -1431,4 +1420,63 @@ html {
 	.lp-poster-rail a:hover img {
 		transform: none;
 	}
+}
+
+/* ==========================================================================
+   Page Nos partenaires
+   Rythme vertical propre à la page. .partners-section, .partners-grid et
+   .partner-card restent partagés avec la page d'édition du Chess Tour et ne
+   sont pas touchés ici.
+   ========================================================================== */
+
+.partners-intro {
+	max-width: 60ch;
+}
+
+.partners-lead {
+	margin: 0;
+	color: #444;
+	font-size: 1.05rem;
+	line-height: 1.6;
+}
+
+.partners-block {
+	margin-top: clamp(48px, 7vw, 72px);
+}
+
+.partners-block-title {
+	margin: 0 0 24px;
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.partners-plain-grid {
+	display: grid;
+	/* 120px, not 150: at 375px wide, 150 + 150 + 32 of gap overshot by 5px and
+	   dropped the grid to a single column of nine stacked logos. */
+	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+	align-items: center;
+	justify-items: center;
+	gap: clamp(28px, 5vw, 40px) clamp(20px, 3vw, 32px);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* The cell reserves the row height. Without it the logos measure 0x0 until
+   they load, and the grid jumped from 112px to its real height on arrival. */
+.partners-plain-grid > li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 56px;
+}
+
+.partner-logo-plain {
+	max-height: 56px;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	object-fit: contain;
 }

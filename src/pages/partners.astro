@@ -30,46 +30,53 @@ const otherLogos = assetsIn('partners')
 ---
 
 <Layout title="Nos partenaires - Lille Métropole Chess">
-  <section class="partners-section">
-    <h1>Nos partenaires</h1>
-    <p>
-      Le Lille Métropole Chess remercie ses partenaires qui soutiennent le
-      club et ses événements tout au long de la saison.
-    </p>
+  <div class="partners-page">
+    <header class="partners-intro">
+      <h1>Nos partenaires</h1>
+      <p class="partners-lead">
+        Le Lille Métropole Chess remercie ses partenaires qui soutiennent le
+        club et ses événements tout au long de la saison.
+      </p>
+    </header>
 
     {contentPartners.length > 0 && (
-      <div class="partners-grid">
-        {contentPartners.map(({ data: partner }) => {
-          const logo = resolveAsset(partner.logo);
-          const card = (
-            <>
-              {logo && (
-                <Image class="partner-logo" src={logo} alt="" width={320} loading="lazy" />
-              )}
-              <h2 class="partner-name">{partner.name}</h2>
-              {partner.description && <p class="partner-desc">{partner.description}</p>}
-            </>
-          );
-          return partner.url ? (
-            <a class="partner-card partner-card--link" href={partner.url} target="_blank" rel="noopener">
-              {card}
-            </a>
-          ) : (
-            <div class="partner-card">{card}</div>
-          );
-        })}
-      </div>
+      <section class="partners-block">
+        <h2 class="partners-block-title">Partenaires officiels</h2>
+        <div class="partners-grid">
+          {contentPartners.map(({ data: partner }) => {
+            const logo = resolveAsset(partner.logo);
+            const card = (
+              <>
+                {logo && (
+                  <Image class="partner-logo" src={logo} alt="" width={320} loading="lazy" />
+                )}
+                <h3 class="partner-name">{partner.name}</h3>
+                {partner.description && <p class="partner-desc">{partner.description}</p>}
+              </>
+            );
+            return partner.url ? (
+              <a class="partner-card partner-card--link" href={partner.url} target="_blank" rel="noopener">
+                {card}
+              </a>
+            ) : (
+              <div class="partner-card">{card}</div>
+            );
+          })}
+        </div>
+      </section>
     )}
 
     {otherLogos.length > 0 && (
-      <>
-        <h2 class="teams-heading">Ils nous soutiennent</h2>
-        <div class="partners-plain-grid">
+      <section class="partners-block">
+        <h2 class="partners-block-title">Ils nous soutiennent</h2>
+        <ul class="partners-plain-grid">
           {otherLogos.map(({ image, alt }) => (
-            <Image class="partner-logo-plain" src={image} alt={alt} width={320} loading="lazy" />
+            <li>
+              <Image class="partner-logo-plain" src={image} alt={alt} width={320} loading="lazy" />
+            </li>
           ))}
-        </div>
-      </>
+        </ul>
+      </section>
     )}
-  </section>
+  </div>
 </Layout>
