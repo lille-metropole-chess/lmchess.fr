@@ -1,8 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { sendContactMessage } from '../lib/contact';
+
+export const prerender = false;
+
+// The form posts to this page rather than to a separate endpoint, so a failed
+// send can re-render with what the visitor typed. Redirecting to an API route
+// threw the message away, and the error then told them to "try again" on an
+// empty form.
+let values = { name: '', email: '', message: '' };
+let error: string | null = null;
+
+if (Astro.request.method === 'POST') {
+	const form = await Astro.request.formData();
+	values = {
+		name: form.get('name')?.toString().trim() ?? '',
+		email: form.get('email')?.toString().trim() ?? '',
+		message: form.get('message')?.toString().trim() ?? '',
+	};
+
+	if (!values.name || !values.email || !values.message) {
+		error = 'Merci de remplir les trois champs avant d\'envoyer.';
+	} else {
+		const result = await sendContactMessage(values);
+		// POST then redirect, so reloading the page does not send twice.
+		if (result.ok) return Astro.redirect('/contact?sent=ok', 303);
+		error = result.error;
+	}
+}
 
 const sent = Astro.url.searchParams.get('sent');
-export const prerender = false;
 ---
 
 <Layout title="Contact - Lille Métropole Chess">
@@ -31,29 +58,32 @@ export const prerender = false;
 			</dl>
 		</div>
 
-		<form class="contact-form" method="POST" action="/api/contact">
+		<form class="contact-form" method="POST">
 			{sent === 'ok' && (
 				<p class="contact-status contact-status-ok" role="status">Merci, votre message a bien été envoyé !</p>
 			)}
-			{sent === 'error' && (
-				<p class="contact-status contact-status-error" role="alert">Une erreur est survenue, réessayez ou écrivez-nous directement par email.</p>
+			{error && (
+				<p class="contact-status contact-status-error" role="alert">
+					{error} Votre message est conservé ci-dessous. Vous pouvez aussi nous écrire à
+					<a href="mailto:contact@lmchess.fr">contact@lmchess.fr</a>.
+				</p>
 			)}
 
 			<p class="contact-form-note">Tous les champs sont obligatoires.</p>
 
 			<div class="contact-field">
 				<label for="contact-name">Votre nom</label>
-				<input id="contact-name" type="text" name="name" autocomplete="name" required />
+				<input id="contact-name" type="text" name="name" autocomplete="name" value={values.name} required />
 			</div>
 
 			<div class="contact-field">
 				<label for="contact-email">Votre email</label>
-				<input id="contact-email" type="email" name="email" autocomplete="email" required />
+				<input id="contact-email" type="email" name="email" autocomplete="email" value={values.email} required />
 			</div>
 
 			<div class="contact-field">
 				<label for="contact-message">Votre message</label>
-				<textarea id="contact-message" name="message" required></textarea>
+				<textarea id="contact-message" name="message" required>{values.message}</textarea>
 			</div>
 
 			<button type="submit" class="contact-submit">
