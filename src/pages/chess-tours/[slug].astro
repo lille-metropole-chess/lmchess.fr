@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntries, getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import TournamentTable from '../../components/TournamentTable.astro';
 
 export const prerender = true;
 
@@ -15,13 +16,13 @@ const partners = tour.data.partners.length > 0
   ? await getEntries(tour.data.partners)
   : [];
 
-// All tournaments belonging to this chess tour edition, sorted by date
+// All tournaments belonging to this chess tour edition.
+// ponytail: content order for now. `date` is free French text ("19-23 Octobre
+// 2026"), so localeCompare sorted it alphabetically and produced a wrong
+// calendar order. Sorting moves into the table itself in the next pass.
 const allTournaments = await getCollection(
   'tournaments',
   (t) => t.data.tourEditionSlug === slug
-);
-allTournaments.sort((a, b) =>
-  (a.data.date ?? '').localeCompare(b.data.date ?? '')
 );
 
 // Aggregate scores per player across tournaments
@@ -88,21 +89,15 @@ export async function getStaticPaths() {
 
   <div class="prose"><Content /></div>
   
-  {allTournaments.length > 0 && (
-    <section class="tournament-section">
-      <h2 class="format-heading">Les tournois de cette édition</h2>
-      <ul class="edition-list">
-        {allTournaments.map((t) => (
-          <li>
-            <a class="edition-link" href={`/chess-tours/${slug}/${t.id}`}>
-              <span>{t.data.name}</span>
-              <span class="edition-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
+  <section class="tournament-section">
+    <h2 class="format-heading">Les tournois de cette édition</h2>
+    <TournamentTable
+      tournaments={allTournaments}
+      basePath={`/chess-tours/${slug}`}
+      caption="Les tournois de cette édition"
+      emptyMessage="Le programme de cette édition n'est pas encore publié."
+    />
+  </section>
   
   {(topMen.length > 0 || topWomen.length > 0) && (
     <section class="ranking-section top5-section">

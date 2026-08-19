@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  tournaments: CollectionEntry<'tournaments'>[];
+  basePath: string;
+  caption: string;
+  emptyMessage?: string;
+}
+
+const {
+  tournaments,
+  basePath,
+  caption,
+  emptyMessage = 'Aucun tournoi annoncé pour le moment.',
+} = Astro.props;
+
+// Turn a day-range date like "19-23 Octobre 2026" into "Du 19 au 23 Octobre 2026"
+function fmtDate(date: string): string {
+  return date.replace(/^(\d+)-(\d+)/, 'Du $1 au $2');
+}
+---
+
+{tournaments.length === 0 ? (
+  <p class="tournament-table-empty">{emptyMessage}</p>
+) : (
+<div class="table-wrapper">
+  <table class="tournament-table">
+    <caption class="sr-only">{caption}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Tournoi</th>
+        <th scope="col">Dates</th>
+        <th scope="col" class="col-rounds">Rondes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {tournaments.map((t, i) => (
+        <tr class={i % 2 === 0 ? 'row-even' : 'row-odd'}>
+          <th scope="row" class="col-tournament-name">
+            <a href={`${basePath}/${t.id}`}>{t.data.name}</a>
+          </th>
+          <td class="col-dates">{t.data.date ? fmtDate(t.data.date) : 'À venir'}</td>
+          <td class="col-rounds">{t.data.rounds ?? 'n.c.'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+)}

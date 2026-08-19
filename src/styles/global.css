@@ -964,3 +964,106 @@ body {
 	margin-bottom: 16px;
 	text-align: center;
 }
+/* Utilitaire : visible uniquement pour les technologies d'assistance */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Tableau des tournois (liste navigable) */
+.tournament-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.95rem;
+	text-align: left;
+}
+
+.tournament-table th,
+.tournament-table td {
+	padding: 14px 16px;
+	border-bottom: 1px solid rgba(0,0,0,.06);
+	font-weight: 400;
+	vertical-align: baseline;
+}
+
+.tournament-table thead th {
+	padding: 8px 16px;
+	border-bottom: 2px solid #111;
+	font-weight: 600;
+	font-size: 0.8rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.tournament-table .row-even {
+	background: #fff;
+}
+
+.tournament-table .row-odd {
+	background: #f7f7f7;
+}
+
+.tournament-table tbody tr:hover {
+	background: #fbeaea;
+}
+
+.tournament-table .col-tournament-name {
+	font-weight: 500;
+}
+
+.tournament-table .col-tournament-name a {
+	color: #111;
+	text-decoration: none;
+	text-underline-offset: 3px;
+}
+
+.tournament-table .col-tournament-name a:hover {
+	color: #b8382b;
+	text-decoration: underline;
+}
+
+.tournament-table .col-tournament-name a:focus-visible {
+	outline: 2px solid #b8382b;
+	outline-offset: 3px;
+}
+
+.tournament-table .col-dates {
+	color: #555;
+	white-space: nowrap;
+}
+
+.tournament-table .col-rounds {
+	text-align: right;
+	color: #555;
+	white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+	.tournament-table th,
+	.tournament-table td {
+		padding: 12px 10px;
+	}
+
+	.tournament-table .col-dates {
+		white-space: normal;
+	}
+}
+
+.tournament-table-empty {
+	margin: 0;
+	padding: 24px 20px;
+	border: 1px solid rgba(0,0,0,.08);
+	border-radius: 8px;
+	background: #faf6f5;
+	color: #444;
+	line-height: 1.6;
+	max-width: 62ch;
+}
