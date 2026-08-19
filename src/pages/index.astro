@@ -1,75 +1,182 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { resolveAsset } from '../lib/images';
+import { boardMembers } from '../data/board';
+import salle from '../assets/img/lmc_site.jpeg';
+
+export const prerender = true;
+
+const HELLOASSO = 'https://www.helloasso.com/associations/lille-metropole-chess';
 
 const chessTours = await getCollection('chessTours');
-export const prerender = true;
+chessTours.sort((a, b) => b.id.localeCompare(a.id));
+const currentTour = chessTours[0];
+
+// Posters carry this band. A tournament without one still shows up, by name.
+const tourTournaments = currentTour
+  ? (await getCollection('tournaments', (t) => t.data.tourEditionSlug === currentTour.id)).map((t) => ({
+      id: t.id,
+      name: t.data.name,
+      date: t.data.date,
+      poster: resolveAsset(t.data.poster),
+    }))
+  : [];
+
+const partners = await getCollection('partners');
+
+// Three doors, deliberately unequal: the beginner gets the most room, because
+// the beginner is the one who needs convincing.
+const doors = [
+  {
+    href: '/inscription',
+    label: "Je n'ai jamais joué en club",
+    body: "Vous connaissez les règles, ou même pas encore. Venez un lundi soir regarder, poser des questions, jouer une partie. Personne ne vous demandera votre niveau à l'entrée.",
+  },
+  { href: '/events', label: 'Je viens pour la compétition' },
+  { href: '/partners', label: 'Je veux soutenir le club' },
+];
 ---
 
 <Layout title="Lille Métropole Chess">
-  <div class="hero">
-    <div class="hero-header">
-      <h1>Bienvenue au LMC</h1>
-    </div>
+  <section class="lp-hero">
+    <p class="lp-eyebrow">Club d'échecs à Lille, depuis 2000</p>
+    <h1 class="lp-hero-line">On joue le<br />lundi soir.</h1>
+    <p class="lp-hero-lead">
+      Débutant complet ou joueur classé, la porte est la même. Vous pouvez venir
+      voir une séance avant de décider quoi que ce soit.
+    </p>
+    <p class="lp-hero-actions">
+      <a class="lp-btn" href="/contact">Venir nous voir</a>
+      <a class="lp-btn-quiet" href="/inscription">Comment s'inscrire</a>
+    </p>
+  </section>
 
-    <div class="columns">
-      <div class="col">
-        <ul>
-          <li id="club">
-            <a href="/club" ><strong>Le Club</strong></a>
-            <ul>
-              <li><a href="/contact" >Contact</a></li>
-              <li><a href="/inscription" >Inscription</a></li>
-              <li><a href="/partners" >Nos partenaires</a></li>
-            </ul>
-          </li>
-
-          <li id="teams">
-            <a href="/teams" ><strong>Nos équipes</strong></a>
-          </li>
-
-          <li id="events">  
-            <a href="/events" ><strong>Évènements</strong></a>
-            <ul>
-              <li id="tour">
-                <a href="/chess-tours" ><strong>Lille Métropole Chess Tour</strong></a>
-                <ul>
-                  {chessTours.map(tour => (
-                    <li>
-                      <a href={`/chess-tours/${tour.id}`}>{tour.data.title}</a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-
-              <li id="tournaments">
-                <a href="/tournaments" ><strong>Tournois et compétitions ordinaires</strong></a>
-              </li>
-            </ul>
-        </ul>
-      </div>
-
-      <div class="col">
-        <ul>
-          <li id="beginner">
-            <strong>Débuter aux échecs</strong>
-            <ul>
-              <li>Le guide de la compétition</li>
-              <li><a href="https://drive.google.com/drive/u/0/folders/1xSvnu9TUJ8HJfWn86HZLvtggFEAnhCIh" target="_blank" rel="noopener noreferrer">Ressources pédagogiques</a></li>
-            </ul>
-          </li>
-
-          <li id="blog">
-            <strong>Blog</strong>
-            <ul>
-              <li>Le LMC en compétition</li>
-              <li>Histoires des échecs</li>
-            </ul>
-          </li>
-
-          <li id="shop"> <a href="https://www.helloasso.com/associations/lille-metropole-chess" target="_blank" rel="noopener noreferrer"> <strong>Boutique</strong></a></li>
-        </ul>
-      </div>
-    </div>
+  <div class="lp-bleed lp-hero-media">
+    <Image
+      src={salle}
+      alt="La salle Camelot un soir de club, tables alignées et parties en cours"
+      width={1082}
+      sizes="(max-width: 1280px) 100vw, 1280px"
+    />
   </div>
+
+  <section class="lp-practical" aria-labelledby="lp-practical-title">
+    <h2 id="lp-practical-title" class="sr-only">Quand et où nous trouver</h2>
+    <div class="lp-practical-when">
+      <p class="lp-label">Quand</p>
+      <p class="lp-practical-value">Lundi 18h–22h</p>
+      <p class="lp-practical-value">Samedi 14h–18h</p>
+    </div>
+    <div class="lp-practical-where">
+      <p class="lp-label">Où</p>
+      <p class="lp-practical-value">Salle Camelot</p>
+      <p class="lp-practical-note">9 rue de la Halle, 59000 Lille</p>
+    </div>
+    <p class="lp-practical-link">
+      <a href="/inscription">Licences et adhésion</a>
+    </p>
+  </section>
+
+  <section class="lp-doors" aria-labelledby="lp-doors-title">
+    <h2 id="lp-doors-title" class="lp-section-title">Par où commencer</h2>
+    <ul class="lp-door-list">
+      {doors.map((door, i) => (
+        <li>
+          <a class={`lp-door lp-door--${i + 1}`} href={door.href}>
+            <span class="lp-door-label">{door.label}</span>
+            {door.body && <span class="lp-door-body">{door.body}</span>}
+            <span class="lp-door-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {tourTournaments.length > 0 && currentTour && (
+    <section class="lp-tour" aria-labelledby="lp-tour-title">
+      <div class="lp-tour-head">
+        <h2 id="lp-tour-title" class="lp-section-title">Lille Métropole Chess Tour</h2>
+        <p class="lp-tour-lead">
+          Cinq tournois qui rythment la saison, du classique au format le plus
+          inattendu. Les résultats se cumulent dans un classement général.
+        </p>
+        <p><a class="lp-btn-quiet" href={`/chess-tours/${currentTour.id}`}>Voir l'édition en cours</a></p>
+      </div>
+      <ul class="lp-bleed lp-poster-rail">
+        {tourTournaments.map((t, i) => (
+          <li class={i % 2 === 0 ? 'lp-poster-low' : 'lp-poster-high'}>
+            <a href={`/chess-tours/${currentTour.id}/${t.id}`}>
+              {t.poster ? (
+                <Image src={t.poster} alt={`Affiche du tournoi ${t.name}`} width={520} loading="lazy" />
+              ) : (
+                <span class="lp-poster-fallback">{t.name}</span>
+              )}
+              <span class="lp-poster-caption">
+                <span class="lp-poster-name">{t.name}</span>
+                {t.date && <span class="lp-poster-date">{t.date}</span>}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="lp-faces" aria-labelledby="lp-faces-title">
+    <div class="lp-faces-head">
+      <h2 id="lp-faces-title" class="lp-section-title">Le club, ce sont eux</h2>
+      <p class="lp-faces-lead">
+        Un bureau de bénévoles. C'est l'un d'eux qui vous accueillera le premier soir.
+      </p>
+      <p><a class="lp-btn-quiet" href="/club">Le projet du club</a></p>
+    </div>
+    <ul class="lp-face-grid">
+      {boardMembers.map((member) => (
+        <li>
+          <Image
+            class="lp-face-photo"
+            src={resolveAsset(`/img/CA/${member.photo}`)!}
+            alt=""
+            width={320}
+            loading="lazy"
+          />
+          <p class="lp-face-name">{member.firstName}</p>
+          <p class="lp-face-role">{member.role}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {partners.length > 0 && (
+    <section class="lp-bleed lp-partners" aria-labelledby="lp-partners-title">
+      <div class="lp-partners-inner">
+        <h2 id="lp-partners-title" class="lp-label">Ils soutiennent le club</h2>
+        <ul class="lp-partner-row">
+          {partners.map(({ data: partner }) => {
+            const logo = resolveAsset(partner.logo);
+            return logo ? (
+              <li><Image src={logo} alt={partner.name} width={320} loading="lazy" /></li>
+            ) : (
+              <li class="lp-partner-name">{partner.name}</li>
+            );
+          })}
+        </ul>
+        <p><a class="lp-btn-quiet" href="/partners">Tous nos partenaires</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="lp-close" aria-labelledby="lp-close-title">
+    <h2 id="lp-close-title" class="lp-close-line">Le prochain lundi fera l'affaire.</h2>
+    <p class="lp-close-address">Salle Camelot, 9 rue de la Halle, 59000 Lille · 18h–22h</p>
+    <p class="lp-hero-actions">
+      <a class="lp-btn" href={`${HELLOASSO}/adhesions/adhesion-lille-metropole-chess-saison-2026-2027`} target="_blank" rel="noopener noreferrer">
+        Adhérer au club
+      </a>
+      <a class="lp-btn-quiet" href={HELLOASSO} target="_blank" rel="noopener noreferrer">La boutique</a>
+      <a class="lp-btn-quiet" href="/contact">Nous écrire</a>
+    </p>
+  </section>
 </Layout>
