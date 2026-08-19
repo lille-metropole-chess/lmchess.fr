@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import { resolveAsset } from '../lib/images';
 
 const boardMembers = [
     { photo: 'sylvain.jpeg', firstName: 'Sylvain', role: 'Président', email: 'sylvduva@gmail.com ' },    
@@ -169,7 +171,7 @@ const boardMembers = [
         <div class="ca-grid">
             {boardMembers.map(member => (
                 <div class="ca-card">
-                    <img class="ca-photo" src={`/img/CA/${member.photo}`} alt={member.firstName} />
+                    <Image class="ca-photo" src={resolveAsset(`/img/CA/${member.photo}`)!} alt="" width={320} loading="lazy" />
                     <p class="ca-name">{member.firstName}</p>
                     <p class="ca-role">{member.role}</p>
                     {member.email && (

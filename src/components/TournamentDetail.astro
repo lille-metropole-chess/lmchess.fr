@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { resolveAsset } from '../lib/images';
 
 interface Props {
   data: CollectionEntry<'tournaments'>['data'];
@@ -10,6 +12,10 @@ interface Props {
 const { data, breadcrumbHref, breadcrumbLabel } = Astro.props;
 
 const hasResults = data.results.length > 0;
+const poster = resolveAsset(data.poster);
+const winnerPhotos = data.winnerPhotos
+  .map((photo) => resolveAsset(photo))
+  .filter((photo) => photo !== undefined);
 const ranking = [...data.results].sort((a, b) => a.place - b.place);
 
 // Format score: 7.5 → "7½", 7.0 → "7", etc.
@@ -35,8 +41,8 @@ function fmtDate(date: string): string {
   </p>
 )}
 
-{data.poster && (
-  <img class="tournament-poster" src={data.poster} alt={`Affiche - ${data.name}`} />
+{poster && (
+  <Image class="tournament-poster" src={poster} alt={`Affiche du tournoi ${data.name}`} width={1200} />
 )}
 
 {data.helloAssoUrl && (
@@ -121,12 +127,17 @@ function fmtDate(date: string): string {
   )}
 </section>
 
-{data.winnerPhotos.length > 0 && (
+{winnerPhotos.length > 0 && (
   <section class="winners-section">
     <h2 class="format-heading">Photos des gagnants</h2>
     <div class="winner-gallery">
-      {data.winnerPhotos.map((photo) => (
-        <img src={photo} alt={`Gagnants - ${data.name}`} />
+      {winnerPhotos.map((photo, i) => (
+        <Image
+          src={photo}
+          alt={`Gagnants du tournoi ${data.name}, photo ${i + 1} sur ${winnerPhotos.length}`}
+          width={640}
+          loading="lazy"
+        />
       ))}
     </div>
   </section>

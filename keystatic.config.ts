@@ -64,8 +64,8 @@ export default config({
         ),
         poster: fields.image({
           label: 'Affiche',
-          directory: 'public/img/tournaments',
-          publicPath: '/img/tournaments/',
+          directory: 'src/assets/tournaments',
+          publicPath: '/src/assets/tournaments/',
         }),
         helloAssoUrl: fields.text({ label: 'Lien HelloAsso (inscription)' }),
         keyInfo: fields.array(
@@ -97,8 +97,8 @@ export default config({
         ffeResultsUrl: fields.text({ label: 'Lien résultats FFE' }),
         winnerPhotos: fields.array(
           fields.image({
-            directory: 'public/img/tournaments',
-            publicPath: '/img/tournaments/',
+            directory: 'src/assets/tournaments',
+            publicPath: '/src/assets/tournaments/',
           }),
           { label: 'Photos des gagnants' }
         ),
@@ -115,8 +115,8 @@ export default config({
           label: 'Content',
           options: {
             image: {
-              directory: 'public/img',
-              publicPath: '/img/',
+              directory: 'src/assets/chesstours',
+              publicPath: '../../assets/chesstours/',
             },
           },
         }),

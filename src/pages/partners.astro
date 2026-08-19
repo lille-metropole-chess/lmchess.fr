@@ -1,36 +1,32 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { assetsIn, resolveAsset } from '../lib/images';
 
 export const prerender = true;
 
 const contentPartners = await getCollection('partners');
 
-const logoDir = path.join(process.cwd(), 'public/partners');
-const logoFiles = fs
-  .readdirSync(logoDir)
-  .filter((file) => /\.(png|jpe?g|webp|svg)$/i.test(file));
-
 const usedLogos = new Set(
   contentPartners
-    .map((p) => p.data.logo)
-    .filter((logo): logo is string => Boolean(logo))
-    .map((logo) => logo.replace('/partners/', ''))
+    .map((p) => resolveAsset(p.data.logo)?.src)
+    .filter(Boolean)
 );
 
-function altFromFilename(file: string) {
-  return file
+function altFromPath(path: string) {
+  return path
+    .split('/')
+    .pop()!
     .replace(/\.[^.]+$/, '')
     .replace(/[-_.]+/g, ' ')
     .trim();
 }
 
-const otherLogos = logoFiles
-  .filter((file) => !usedLogos.has(file))
-  .map((file) => ({ file, alt: altFromFilename(file) }))
-  .sort((a, b) => a.alt.localeCompare(b.alt));
+const otherLogos = assetsIn('partners')
+  .filter(({ image }) => !usedLogos.has(image.src))
+  .map(({ path, image }) => ({ image, alt: altFromPath(path) }))
+  .sort((a, b) => a.alt.localeCompare(b.alt, 'fr'));
 ---
 
 <Layout title="Nos partenaires - Lille Métropole Chess">
@@ -44,10 +40,11 @@ const otherLogos = logoFiles
     {contentPartners.length > 0 && (
       <div class="partners-grid">
         {contentPartners.map(({ data: partner }) => {
+          const logo = resolveAsset(partner.logo);
           const card = (
             <>
-              {partner.logo && (
-                <img class="partner-logo" src={partner.logo} alt={partner.name} loading="lazy" />
+              {logo && (
+                <Image class="partner-logo" src={logo} alt="" width={320} loading="lazy" />
               )}
               <h2 class="partner-name">{partner.name}</h2>
               {partner.description && <p class="partner-desc">{partner.description}</p>}
@@ -68,8 +65,8 @@ const otherLogos = logoFiles
       <>
         <h2 class="teams-heading">Ils nous soutiennent</h2>
         <div class="partners-plain-grid">
-          {otherLogos.map(({ file, alt }) => (
-            <img class="partner-logo-plain" src={`/partners/${file}`} alt={alt} loading="lazy" />
+          {otherLogos.map(({ image, alt }) => (
+            <Image class="partner-logo-plain" src={image} alt={alt} width={320} loading="lazy" />
           ))}
         </div>
       </>

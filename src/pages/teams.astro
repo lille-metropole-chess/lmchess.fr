@@ -1,12 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import fingerIcon from '../assets/img/icons/finger.png';
 ---
 
 <Layout title="Equipes - Lille Métropole Chess">
     <section class="teams-section">
         <h2 class="teams-heading"> 
             Suivre les équipes du club sur le site de la FFE 
-            <img width="20" height="20" src="/img/icons/finger.png" alt="finger" />
+            <Image src={fingerIcon} alt="" width={20} height={20} />
             <button type="button" class="teams-link-button" onclick="window.open('https://echecs.asso.fr/ListeEquipes.aspx?ClubRef=1348', '_blank')"> Ici</button>
         </h2> 
             

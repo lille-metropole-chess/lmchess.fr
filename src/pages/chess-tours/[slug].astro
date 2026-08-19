@@ -1,6 +1,8 @@
 ---
 import { getCollection, getEntries, getEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
+import { resolveAsset } from '../../lib/images';
 import TournamentTable from '../../components/TournamentTable.astro';
 
 export const prerender = true;
@@ -190,10 +192,11 @@ export async function getStaticPaths() {
       <h2 class="format-heading">Les partenaires du Tour</h2>
       <div class="partners-grid">
         {partners.map(({ data: partner }) => {
+          const logo = resolveAsset(partner.logo);
           const card = (
             <>
-              {partner.logo && (
-                <img class="partner-logo" src={partner.logo} alt={partner.name} loading="lazy" />
+              {logo && (
+                <Image class="partner-logo" src={logo} alt="" width={320} loading="lazy" />
               )}
               <h3 class="partner-name">{partner.name}</h3>
               {partner.description && <p class="partner-desc">{partner.description}</p>}
