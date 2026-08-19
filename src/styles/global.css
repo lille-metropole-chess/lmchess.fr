@@ -579,7 +579,7 @@ body {
 
 .contact-meta dt {
 	flex: 0 0 90px;
-	color: #888;
+	color: #767676;
 	font-size: 0.75rem;
 	font-weight: 700;
 	letter-spacing: 0.08em;
@@ -611,15 +611,34 @@ body {
 	background: #fff;
 }
 
-.contact-form input::placeholder,
-.contact-form textarea::placeholder {
-	color: #888;
+.contact-form-note {
+	margin: 0;
+	color: #555;
+	font-size: 0.875rem;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-	outline: none;
+.contact-field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.contact-field label {
+	font-weight: 500;
+	font-size: 0.9rem;
+	color: #111;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+	color: #767676;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
 	border-color: #b8382b;
+	outline: 2px solid #b8382b;
+	outline-offset: 1px;
 }
 
 .contact-form textarea {
@@ -645,6 +664,11 @@ body {
 
 .contact-submit:hover {
 	background: #9c2f24;
+}
+
+.contact-submit:focus-visible {
+	outline: 2px solid #9c2f24;
+	outline-offset: 2px;
 }
 
 .contact-status {
