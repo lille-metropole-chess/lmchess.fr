@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { resolveAsset } from '../lib/images';
-import { boardMembers } from '../data/board';
 import salle from '../assets/img/lmc_site.jpeg';
 
 export const prerender = true;
@@ -34,8 +33,16 @@ const doors = [
     label: "Je n'ai jamais joué en club",
     body: "Vous connaissez les règles, ou même pas encore. Venez un lundi soir regarder, poser des questions, jouer une partie. Personne ne vous demandera votre niveau à l'entrée.",
   },
-  { href: '/events', label: 'Je viens pour la compétition' },
-  { href: '/partners', label: 'Je veux soutenir le club' },
+  {
+    href: '/events',
+    label: 'Je viens pour la compétition',
+    body: "Le club aligne des équipes en interclubs et organise cinq tournois par saison, du blitz à la partie longue. Les résultats et le calendrier sont tenus à jour ici.",
+  },
+  {
+    href: '/partners',
+    label: 'Je veux soutenir le club',
+    body: "Entreprises, commerces, institutions : le Lille Métropole Chess Tour cherche des partenaires, et rend visible ceux qui l'accompagnent tout au long de la saison.",
+  },
 ];
 ---
 
@@ -82,11 +89,11 @@ const doors = [
   <section class="lp-doors" aria-labelledby="lp-doors-title">
     <h2 id="lp-doors-title" class="lp-section-title">Par où commencer</h2>
     <ul class="lp-door-list">
-      {doors.map((door, i) => (
+      {doors.map((door) => (
         <li>
-          <a class={`lp-door lp-door--${i + 1}`} href={door.href}>
+          <a class="lp-door" href={door.href}>
             <span class="lp-door-label">{door.label}</span>
-            {door.body && <span class="lp-door-body">{door.body}</span>}
+            <span class="lp-door-body">{door.body}</span>
             <span class="lp-door-arrow" aria-hidden="true">→</span>
           </a>
         </li>
@@ -123,31 +130,6 @@ const doors = [
       </ul>
     </section>
   )}
-
-  <section class="lp-faces" aria-labelledby="lp-faces-title">
-    <div class="lp-faces-head">
-      <h2 id="lp-faces-title" class="lp-section-title">Le club, ce sont eux</h2>
-      <p class="lp-faces-lead">
-        Un bureau de bénévoles. C'est l'un d'eux qui vous accueillera le premier soir.
-      </p>
-      <p><a class="lp-btn-quiet" href="/club">Le projet du club</a></p>
-    </div>
-    <ul class="lp-face-grid">
-      {boardMembers.map((member) => (
-        <li>
-          <Image
-            class="lp-face-photo"
-            src={resolveAsset(`/img/CA/${member.photo}`)!}
-            alt=""
-            width={320}
-            loading="lazy"
-          />
-          <p class="lp-face-name">{member.firstName}</p>
-          <p class="lp-face-role">{member.role}</p>
-        </li>
-      ))}
-    </ul>
-  </section>
 
   {partners.length > 0 && (
     <section class="lp-bleed lp-partners" aria-labelledby="lp-partners-title">
