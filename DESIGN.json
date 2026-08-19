@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-19T09:41:23Z",
+  "title": "Design System: Lille Métropole Chess",
+  "extensions": {
+    "colorMeta": {
+      "brique": {
+        "role": "primary",
+        "displayName": "Rouge Brique Lillois",
+        "canonical": "oklch(52.5% 0.148 30.5)",
+        "tonalRamp": ["#3a120d", "#571a14", "#75241b", "#9c2f24", "#b8382b", "#d4695d", "#e8a49b", "#fbeaea"]
+      },
+      "brique-deep": {
+        "role": "primary",
+        "displayName": "Brique Profonde",
+        "canonical": "oklch(46.5% 0.138 30.5)"
+      },
+      "brique-wash": {
+        "role": "primary",
+        "displayName": "Voile Brique",
+        "canonical": "oklch(94.5% 0.024 25)"
+      },
+      "brique-mist": {
+        "role": "primary",
+        "displayName": "Brume Brique",
+        "canonical": "oklch(97.3% 0.008 30)"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Encre",
+        "canonical": "oklch(17.8% 0 0)",
+        "tonalRamp": ["#111111", "#333333", "#444444", "#555555", "#666666", "#888888", "#f7f7f7", "#ffffff"]
+      },
+      "ink-soft": { "role": "neutral", "displayName": "Encre Douce", "canonical": "oklch(31.6% 0 0)" },
+      "slate": { "role": "neutral", "displayName": "Ardoise", "canonical": "oklch(38.5% 0 0)" },
+      "slate-muted": { "role": "neutral", "displayName": "Ardoise Sourde", "canonical": "oklch(45.2% 0 0)" },
+      "grey-quiet": { "role": "neutral", "displayName": "Gris Discret", "canonical": "oklch(51.7% 0 0)" },
+      "grey-faint": { "role": "neutral", "displayName": "Gris Pâle", "canonical": "oklch(63.6% 0 0)" },
+      "surface": { "role": "neutral", "displayName": "Surface", "canonical": "oklch(100% 0 0)" },
+      "surface-alt": { "role": "neutral", "displayName": "Surface Alternée", "canonical": "oklch(97.4% 0 0)" },
+      "success-bg": { "role": "tertiary", "displayName": "Fond Vert Validé", "canonical": "oklch(95.7% 0.021 145)" },
+      "success-text": { "role": "tertiary", "displayName": "Vert Validé", "canonical": "oklch(46.8% 0.101 145)" },
+      "error-text": { "role": "tertiary", "displayName": "Rouge Erreur", "canonical": "oklch(46.9% 0.146 25)" },
+      "hairline": { "role": "neutral", "displayName": "Filet", "canonical": "rgba(0,0,0,.12)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Titre principal d'une page d'entrée éditorialisée. Un seul par page." },
+      "headline": { "displayName": "Headline", "purpose": "Titre de page courante et titre de bloc éditorial long." },
+      "title": { "displayName": "Title", "purpose": "Titre de section interne. Variante à 1.25rem pour les sous-sections." },
+      "body": { "displayName": "Body", "purpose": "Texte courant, plafonné entre 42ch et 760px. Variantes 0.9rem et 0.875rem pour descriptions et métadonnées." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows et libellés de listes de définition. Seul usage autorisé des capitales." }
+    },
+    "shadows": [
+      {
+        "name": "surface-hover",
+        "value": "0 4px 12px rgba(0,0,0,.1)",
+        "purpose": "Survol ou focus d'une carte cliquable, avec translateY(-2px) et bordure durcie à rgba(0,0,0,.2)."
+      },
+      {
+        "name": "floating-layer",
+        "value": "0 8px 24px rgba(0,0,0,.12)",
+        "purpose": "Panneau du menu mobile, seule surface réellement superposée au contenu."
+      }
+    ],
+    "motion": [
+      { "name": "state", "value": "0.15s ease", "purpose": "Changements d'état : fond de bouton, bordure et fond de ligne navigable." },
+      { "name": "surface", "value": "0.2s ease", "purpose": "Cartes cliquables : box-shadow, transform, border-color." },
+      { "name": "lift", "value": "translateY(-2px)", "purpose": "Survol d'une carte cliquable." },
+      { "name": "advance", "value": "translateX(4px)", "purpose": "Survol d'une ligne navigable et de sa flèche. Signifie « ceci mène ailleurs »." }
+    ],
+    "breakpoints": [
+      { "name": "definition-lists", "value": "600px" },
+      { "name": "columns", "value": "700px" },
+      { "name": "contact", "value": "800px" },
+      { "name": "nav", "value": "900px" },
+      { "name": "page-max", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Action principale : envoi de formulaire, inscription à un tournoi.",
+      "html": "<button class=\"ds-btn-primary\">Envoyer</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: none; border-radius: 4px; background: #b8382b; color: #fff; font-family: 'Roboto', system-ui, sans-serif; font-weight: 700; font-size: 1rem; padding: 16px 24px; cursor: pointer; transition: background .15s ease; } .ds-btn-primary:hover { background: #9c2f24; } .ds-btn-primary:focus-visible { outline: 2px solid #9c2f24; outline-offset: 2px; }"
+    },
+    {
+      "name": "Compact Button",
+      "kind": "button",
+      "refersTo": "button-compact",
+      "description": "Action secondaire en fil de texte : lien d'équipe, CTA de tournoi.",
+      "html": "<a class=\"ds-btn-compact\" href=\"#\">Voir la composition</a>",
+      "css": ".ds-btn-compact { display: inline-flex; align-items: center; border: none; border-radius: 4px; background: #b8382b; color: #fff; font-family: 'Roboto', system-ui, sans-serif; font-weight: 700; font-size: 0.9rem; padding: 8px 16px; text-decoration: none; cursor: pointer; transition: background .15s ease; } .ds-btn-compact:hover { background: #9c2f24; } .ds-btn-compact:focus-visible { outline: 2px solid #9c2f24; outline-offset: 2px; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Coquille partagée par les cartes format, partenaire et hôtel. Plate au repos.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-card-title\">Open classique</p><p class=\"ds-card-desc\">9 rondes, cadence 90 min + 30 s. Les parties durent environ 4 heures.</p></div>",
+      "css": ".ds-card { padding: 20px; border: 1px solid rgba(0,0,0,.08); border-radius: 8px; background: #fff; color: #111; font-family: 'Roboto', system-ui, sans-serif; } .ds-card-title { margin: 0 0 8px; font-size: 1.05rem; font-weight: 700; } .ds-card-desc { margin: 0; color: #555; font-size: 0.9rem; line-height: 1.5; }"
+    },
+    {
+      "name": "Clickable Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Carte partenaire cliquable. Seule carte du système autorisée à porter une ombre, et uniquement au survol.",
+      "html": "<a class=\"ds-card-link\" href=\"#\"><p class=\"ds-card-link-name\">Resort Barrière Lille</p><p class=\"ds-card-link-desc\">Partenaire hébergement du Chess Tour.</p></a>",
+      "css": ".ds-card-link { display: block; padding: 20px; border: 1px solid rgba(0,0,0,.08); border-radius: 8px; background: #fff; text-align: center; color: #111; text-decoration: none; font-family: 'Roboto', system-ui, sans-serif; cursor: pointer; transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease; } .ds-card-link:hover, .ds-card-link:focus-visible { border-color: rgba(0,0,0,.2); box-shadow: 0 4px 12px rgba(0,0,0,.1); transform: translateY(-2px); } .ds-card-link-name { margin: 0 0 8px; font-size: 1.05rem; font-weight: 700; } .ds-card-link-desc { margin: 0; color: #555; font-size: 0.9rem; line-height: 1.5; }"
+    },
+    {
+      "name": "Row Link",
+      "kind": "nav",
+      "refersTo": "row-link",
+      "description": "Composant signature. Liste navigable, préféré à la carte dès qu'une liste sert à naviguer.",
+      "html": "<a class=\"ds-row-link\" href=\"#\"><span>Édition 2026-2027</span><span class=\"ds-row-arrow\" aria-hidden=\"true\">&#8594;</span></a>",
+      "css": ".ds-row-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; border: 1px solid rgba(0,0,0,.12); border-radius: 8px; background: #fff; color: #111; text-decoration: none; font-family: 'Roboto', system-ui, sans-serif; font-weight: 500; font-size: 1.05rem; transition: border-color .15s ease, background .15s ease, transform .15s ease; } .ds-row-link:hover, .ds-row-link:focus-visible { border-color: #b8382b; background: #fbeaea; transform: translateX(4px); } .ds-row-arrow { color: #b8382b; font-weight: 700; transition: transform .15s ease; } .ds-row-link:hover .ds-row-arrow { transform: translateX(4px); } @media (prefers-reduced-motion: reduce) { .ds-row-link, .ds-row-arrow { transition: border-color .15s ease, background .15s ease; } .ds-row-link:hover, .ds-row-link:hover .ds-row-arrow { transform: none; } }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Champ de formulaire de contact. Le focus-visible ci-dessous corrige la suppression d'outline présente dans le code actuel.",
+      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"votre@email.fr\" />",
+      "css": ".ds-input { width: 100%; box-sizing: border-box; font-family: 'Roboto', system-ui, sans-serif; font-size: 1rem; padding: 16px; border: 1px solid rgba(0,0,0,.15); border-radius: 6px; color: #111; background: #fff; } .ds-input::placeholder { color: #888; } .ds-input:focus-visible { border-color: #b8382b; outline: 2px solid #b8382b; outline-offset: 1px; }"
+    },
+    {
+      "name": "Status Message",
+      "kind": "custom",
+      "refersTo": "status-success",
+      "description": "Retour d'envoi de formulaire. Le statut est porté par le texte autant que par la couleur.",
+      "html": "<p class=\"ds-status ds-status-ok\">Message envoyé. Nous vous répondons sous 48 h.</p><p class=\"ds-status ds-status-error\">Envoi impossible. Réessayez ou écrivez-nous directement.</p>",
+      "css": ".ds-status { margin: 0 0 12px; padding: 12px 16px; border-radius: 6px; font-family: 'Roboto', system-ui, sans-serif; font-size: 0.9rem; } .ds-status-ok { background: #eaf5ea; color: #2a6b2a; } .ds-status-error { background: #fbeaea; color: #a12b2b; }"
+    },
+    {
+      "name": "Ranking Table",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Grille de résultats. Composant le plus dense du système, seul à justifier une bordure de 2px.",
+      "html": "<div class=\"ds-table-wrap\"><table class=\"ds-table\"><thead><tr><th class=\"ds-col-rank\">#</th><th class=\"ds-col-name\">Joueur</th><th class=\"ds-col-total\">Total</th></tr></thead><tbody><tr class=\"ds-row-odd\"><td class=\"ds-col-rank\">1</td><td class=\"ds-col-name\">Dupont, Marie</td><td class=\"ds-col-total\">7,5</td></tr><tr class=\"ds-row-even\"><td class=\"ds-col-rank\">2</td><td class=\"ds-col-name\">Martin, Paul</td><td class=\"ds-col-total\">7,0</td></tr></tbody></table></div>",
+      "css": ".ds-table-wrap { overflow-x: auto; } .ds-table { width: 100%; border-collapse: collapse; font-family: 'Roboto', system-ui, sans-serif; font-size: 0.9rem; white-space: nowrap; color: #111; } .ds-table th { text-align: left; padding: 8px 12px; border-bottom: 2px solid #111; font-weight: 600; } .ds-table td { padding: 6px 12px; border-bottom: 1px solid rgba(0,0,0,.06); } .ds-row-even { background: #fff; } .ds-row-odd { background: #f7f7f7; } .ds-col-rank { width: 40px; text-align: right; color: #555; } .ds-col-name { min-width: 180px; } .ds-col-total { text-align: center; font-weight: 600; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "row-link",
+      "description": "En-tête collant. Marque à gauche, liens à droite, filet inférieur de 1px.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-brand\" href=\"/\">Lille Métropole Chess</a><nav class=\"ds-nav\"><a href=\"/club\">Le Club</a><a href=\"/teams\">Nos équipes</a><a href=\"/events\">Évènements</a></nav></header>",
+      "css": ".ds-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; border-bottom: 1px solid rgba(0,0,0,.08); background: #fff; font-family: 'Roboto', system-ui, sans-serif; } .ds-brand { font-weight: 700; font-size: 1.05rem; color: #111; text-decoration: none; } .ds-nav { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; } .ds-nav a { color: #111; text-decoration: none; font-weight: 500; } .ds-nav a:hover { text-decoration: underline; } .ds-nav a:focus-visible { outline: 2px solid #b8382b; outline-offset: 3px; }"
+    },
+    {
+      "name": "Member Avatar",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Photo de membre du conseil. Le rayon à 26 % est le seul geste de forme distinctif du système.",
+      "html": "<figure class=\"ds-avatar\"><img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23faf6f5'/%3E%3Ccircle cx='50' cy='38' r='18' fill='%23b8382b'/%3E%3Cpath d='M14 100c0-22 16-34 36-34s36 12 36 34z' fill='%23b8382b'/%3E%3C/svg%3E\" alt=\"\" /><figcaption class=\"ds-avatar-name\">Sylvain</figcaption><p class=\"ds-avatar-role\">Président</p></figure>",
+      "css": ".ds-avatar { text-align: center; margin: 0; font-family: 'Roboto', system-ui, sans-serif; max-width: 160px; } .ds-avatar img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: top; border-radius: 26%; display: block; margin: 0 auto 12px; } .ds-avatar-name { margin: 0; font-weight: 700; font-size: 1.05rem; color: #111; } .ds-avatar-role { margin: 4px 0 0; color: #555; font-size: 0.9rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La maison de club",
+    "overview": "Un lieu clair et ordonné, pas un document. Les surfaces sont blanches et calmes, les séparations sont des traits fins, et le rouge brique n'apparaît que là où quelque chose se passe : un lien, une action, une date, un nom. Le système ne cherche pas à impressionner par la matière ; il cherche à ce qu'on trouve sa place tout de suite. Les visages des membres, les photos de salle et les affiches de tournoi sont les seuls éléments autorisés à apporter de la couleur en masse.\n\nLa densité est faible sur les pages d'accueil et de présentation, forte sur les pages de résultats. C'est assumé : ce sont deux lectures différentes du même lieu. Une page de club se parcourt du regard, une grille de tournoi se scrute. Le système ne cherche pas à harmoniser artificiellement les deux, il les traite avec le même vocabulaire (trait fin, blanc, un seul rouge) à deux régimes de densité.\n\nCe système rejette frontalement deux choses, reprises de PRODUCT.md. Le cliché de l'échiquier noir et blanc : aucun damier, aucun motif de cases, aucune pièce détourée en héros. Et le luxe sombre navy et or : pas de fond nocturne, pas de sérif dorée, rien qui suggère un club fermé. Le blanc ici n'est pas du prestige, c'est de la clarté.",
+    "keyCharacteristics": [
+      "Fond blanc dominant, aucune surface sombre",
+      "Un seul accent chromatique, le rouge brique, jamais accompagné d'une seconde couleur d'identité",
+      "Séparations au trait de 1px plutôt que par ombres ou blocs colorés",
+      "Titres en sérif, tout le reste en sans-serif, sans troisième famille",
+      "Angles doux et discrets : 4px sur les actions, 8px sur les surfaces",
+      "Mouvement bref et réactif, jamais décoratif"
+    ],
+    "rules": [
+      { "name": "La règle de la couleur unique", "body": "Le système n'a qu'une couleur d'identité. Toute nouvelle teinte introduite doit être fonctionnelle (statut, donnée) et démontrable comme telle, ou elle est refusée. Un site de club qui gagne une deuxième couleur perd sa première.", "section": "colors" },
+      { "name": "La règle du blanc porteur", "body": "Le blanc n'est pas un fond par défaut, c'est la matière principale. Si une section a besoin d'être détachée, la réponse est un filet, un espace plus large ou une teinte à peine perceptible (#faf6f5, #f7f7f7), jamais un aplat coloré.", "section": "colors" },
+      { "name": "La règle du rouge rare", "body": "Le rouge brique reste sous 10 % de la surface visible d'un écran. Il marque ce qui est cliquable ou ce qui est daté, rien d'autre. Un titre n'est pas rouge, un encadré n'est pas rouge, une bordure décorative n'est pas rouge.", "section": "colors" },
+      { "name": "La règle de la sérif rare", "body": "Playfair Display ne sort que pour les titres de page et les titres de bloc éditorial. Elle est interdite dans les boutons, les tableaux, les cartes, les libellés et les intertitres de section, qui appartiennent tous à Roboto. Deux niveaux de sérif sur un même écran est déjà un niveau de trop.", "section": "typography" },
+      { "name": "La règle du saut d'échelle", "body": "Chaque niveau de titre est séparé du suivant par un rapport d'au moins 1.25, ou par un changement de graisse et de famille. Deux titres voisins de tailles proches sont un défaut de hiérarchie, pas une nuance.", "section": "typography" },
+      { "name": "La règle du jargon traduit", "body": "Reprise directe de PRODUCT.md : tout terme échiquéen affiché en corps de texte est explicité au moins une fois sur la page. La typographie ne compense pas un vocabulaire opaque.", "section": "typography" },
+      { "name": "La règle du plat au repos", "body": "Une surface est plate tant qu'elle n'est ni survolée, ni superposée. L'ombre est un signal d'interaction ou de superposition, jamais un effet de style.", "section": "elevation" },
+      { "name": "La règle du filet gradué", "body": "L'épaisseur d'une séparation ne varie pas, seule son opacité varie : .06 à l'intérieur d'une liste ou d'un tableau, .08 pour délimiter une surface, .12 pour une cible interactive, .2 au survol. Une bordure au-delà de 1px n'existe que sur l'en-tête de tableau (2px sous les intitulés de colonnes), où elle est structurelle.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do garder le rouge brique (#b8382b) sous 10 % de la surface d'un écran, et le réserver à ce qui est cliquable ou daté.",
+      "Do séparer les surfaces par un filet de 1px dont seule l'opacité varie (.06, .08, .12, .15, .2), jamais par une ombre au repos.",
+      "Do réserver Playfair Display aux titres de page et de bloc éditorial, et passer tout le reste en Roboto.",
+      "Do plafonner la prose entre 42ch et 760px, et laisser respirer : 48px de padding de page, 48px entre sections.",
+      "Do utiliser le Row Link plutôt qu'une carte dès qu'une liste sert à naviguer.",
+      "Do poser un :focus-visible explicite et non uniquement chromatique sur tout élément interactif, y compris les champs de formulaire. La cible est WCAG 2.2 AA.",
+      "Do doubler toute information portée par la couleur (statut, résultat, disponibilité) d'un texte ou d'une forme.",
+      "Do implémenter prefers-reduced-motion sur les deux translations de survol du système.",
+      "Do montrer des visages, des salles et des affiches quand une page a besoin de couleur. C'est la seule source de couleur en masse autorisée."
+    ],
+    "donts": [
+      "Don't introduire de damier, de motif de cases, de pièce d'échecs détourée ou de palette noir / blanc / or. Le cliché de l'échiquier est interdit comme socle visuel, y compris en filigrane, en fond de héro ou en séparateur.",
+      "Don't basculer une section en fond bleu nuit avec sérif dorée. Le luxe sombre navy et or contredit frontalement l'audience débutants.",
+      "Don't utiliser border-left ou border-right de plus de 1px comme accent coloré. Le bloc du mot du président porte aujourd'hui un border-left: 4px solid #b8382b : c'est une dette identifiée, à remplacer par un fond teinté seul, pas un motif à reproduire.",
+      "Don't ajouter une deuxième couleur d'identité. Le vert et le rouge d'erreur existants sont fonctionnels et n'autorisent aucune extension décorative.",
+      "Don't poser d'ombre sur une surface au repos. Si elle n'est ni survolée ni superposée, elle est plate.",
+      "Don't empiler des cartes à l'intérieur de cartes, ni produire des grilles de cartes identiques icône + titre + texte à répétition.",
+      "Don't utiliser #000 ou #fff pour du texte. L'encre du système est #111111.",
+      "Don't appliquer background-clip: text avec un dégradé, ni aucun texte en dégradé.",
+      "Don't faire descendre du texte utile sous #888888 en contraste, ni porter une information essentielle avec cette teinte.",
+      "Don't ouvrir une modale par réflexe. Le menu mobile est un details/summary natif sans JavaScript, et c'est la bonne réponse par défaut.",
+      "Don't ajouter des classes Tailwind. Tailwind v4 est installé mais le système est entièrement en CSS écrit à la main dans src/styles/global.css ; mélanger les deux fracturerait le système."
+    ]
+  }
+}
