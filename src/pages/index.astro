@@ -128,10 +128,21 @@ const doors = [
         <ul class="lp-partner-row">
           {partners.map(({ data: partner }) => {
             const logo = resolveAsset(partner.logo);
-            return logo ? (
-              <li><Image src={logo} alt={partner.name} width={320} loading="lazy" /></li>
+            const inner = logo ? (
+              <Image src={logo} alt={partner.name} width={480} loading="lazy" />
             ) : (
-              <li class="lp-partner-name">{partner.name}</li>
+              <span class="lp-partner-name">{partner.name}</span>
+            );
+            return (
+              <li>
+                {partner.url ? (
+                  <a class="lp-partner-card lp-partner-card--link" href={partner.url} target="_blank" rel="noopener noreferrer">
+                    {inner}
+                  </a>
+                ) : (
+                  <div class="lp-partner-card">{inner}</div>
+                )}
+              </li>
             );
           })}
         </ul>
