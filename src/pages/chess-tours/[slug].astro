@@ -3,6 +3,7 @@ import { getCollection, getEntries, getEntry, render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import { resolveAsset } from '../../lib/images';
+import { tournamentDateValue } from '../../lib/dates';
 import TournamentTable from '../../components/TournamentTable.astro';
 
 export const prerender = true;
@@ -18,14 +19,11 @@ const partners = tour.data.partners.length > 0
   ? await getEntries(tour.data.partners)
   : [];
 
-// All tournaments belonging to this chess tour edition.
-// ponytail: content order for now. `date` is free French text ("19-23 Octobre
-// 2026"), so localeCompare sorted it alphabetically and produced a wrong
-// calendar order. Sorting moves into the table itself in the next pass.
-const allTournaments = await getCollection(
+// All tournaments belonging to this chess tour edition, in calendar order.
+const allTournaments = (await getCollection(
   'tournaments',
   (t) => t.data.tourEditionSlug === slug
-);
+)).sort((a, b) => tournamentDateValue(a.data.date) - tournamentDateValue(b.data.date));
 
 // Aggregate scores per player across tournaments
 // FIDE ID is the canonical key; fall back to uppercased name

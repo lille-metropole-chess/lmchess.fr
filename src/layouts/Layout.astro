@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css'
 
 import lmcLogo from '../assets/img/lmc_logo.jpg';
@@ -76,7 +77,8 @@ const footerLogos = [
 						<Image src={logo.src} alt={logo.alt} width={180} loading="lazy" />
 					))}
 				</div>
-				<p>©Gia-Thuy Pham et LMC 2026</p>
+				<p>©Gia-Thuy Pham | Nicolas Seynaeve | LMC 2026</p>
 			</footer>
+			<Analytics />
 		</body>
 </html>

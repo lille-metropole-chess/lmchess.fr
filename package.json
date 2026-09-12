@@ -18,6 +18,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
+    "@vercel/analytics": "^1.6.1",
     "astro": "^6.1.8",
     "astro-mail-obfuscation": "^2.3.4",
     "astro-robots-txt": "^1.0.0",

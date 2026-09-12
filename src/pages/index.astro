@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { resolveAsset } from '../lib/images';
+import { tournamentDateValue } from '../lib/dates';
 
 export const prerender = true;
 
@@ -14,12 +15,14 @@ const currentTour = chessTours[0];
 
 // Posters carry this band. A tournament without one still shows up, by name.
 const tourTournaments = currentTour
-  ? (await getCollection('tournaments', (t) => t.data.tourEditionSlug === currentTour.id)).map((t) => ({
-      id: t.id,
-      name: t.data.name,
-      date: t.data.date,
-      poster: resolveAsset(t.data.poster),
-    }))
+  ? (await getCollection('tournaments', (t) => t.data.tourEditionSlug === currentTour.id))
+      .map((t) => ({
+        id: t.id,
+        name: t.data.name,
+        date: t.data.date,
+        poster: resolveAsset(t.data.poster),
+      }))
+      .sort((a, b) => tournamentDateValue(a.date) - tournamentDateValue(b.date))
   : [];
 
 const partners = await getCollection('partners');
@@ -48,7 +51,7 @@ const doors = [
 <Layout title="Lille Métropole Chess">
   <section class="lp-hero">
     <p class="lp-eyebrow">Club d'échecs à Lille, depuis 2000</p>
-    <h1 class="lp-hero-line">On joue le<br />lundi soir.</h1>
+    <h1 class="lp-hero-line">On joue le<br />lundi soir et le samedi après-midi.</h1>
     <p class="lp-hero-lead">
       Débutant complet ou joueur classé, la porte est la même. Vous pouvez venir
       voir une séance avant de décider quoi que ce soit.
