@@ -11,6 +11,12 @@ const post = await getEntry('posts', slug);
 if (!post) throw new Error('No post found for this slug');
 const { Content } = await render(post);
 
+const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
 // Generate static pages
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -20,5 +26,10 @@ export async function getStaticPaths() {
 
 <Layout title={post.data.title}>
   <h1>{post.data.title}</h1>
-  <Content />
+  <time class="blog-date" datetime={post.data.date.toISOString()}>
+    {dateFormatter.format(post.data.date)}
+  </time>
+  <div class="prose">
+    <Content />
+  </div>
 </Layout>

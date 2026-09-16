@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { postExcerpt } from '../../lib/text';
+
+export const prerender = true;
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Layout title="Blog - Lille Métropole Chess">
+  
+  <h1>Blog</h1>
+  
+  <section class="newcomers-section">
+    <h2 class="newcomers-heading">Nouveau au club ?</h2>
+    <p class="newcomers-intro">
+      Retrouvez toutes les informations utiles pour bien démarrer au club :
+    </p>
+    <ul class="newcomers-links">
+      <li>
+        {/* TODO: remplacer par le lien du PDF une fois le livret finalisé */}
+        <a class="newcomers-link" href="#" target="_blank" rel="noopener">
+          Livret d'accueil
+          <span class="newcomers-arrow">→</span>
+        </a>
+      </li>
+      <li>
+        {/* TODO: remplacer par le lien du PDF une fois le guide finalisé */}
+        <a class="newcomers-link" href="#" target="_blank" rel="noopener">
+          Guide du débutant
+          <span class="newcomers-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+
+  {posts.length === 0 ? (
+    <p class="no-results">Aucun post n'a été publié pour le moment.</p>
+  ) : (
+    <ul class="blog-list">
+      {posts.map((post) => (
+        <li class="blog-card">
+          <h2 class="blog-title">{post.data.title}</h2>
+          <p class="blog-meta">
+            Publié le{' '}
+            <time datetime={post.data.date.toISOString()}>
+              {dateFormatter.format(post.data.date)}
+            </time>
+          </p>
+          <p class="blog-excerpt">{postExcerpt(post.body)}</p>
+          <a class="blog-read-more" href={`/posts/${post.id}`}>Lire l'article complet →</a>
+        </li>
+      ))}
+    </ul>
+  )}
+
+</Layout>
