@@ -1,7 +1,7 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: import.meta.env.KEYSTATIC_STORAGE_KIND === 'github'
+  storage: import.meta.env.PUBLIC_KEYSTATIC_STORAGE_KIND === 'github'
     ? {
         kind: 'github',
         repo: {
