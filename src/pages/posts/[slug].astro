@@ -29,6 +29,13 @@ export async function getStaticPaths() {
   <time class="blog-date" datetime={post.data.date.toISOString()}>
     {dateFormatter.format(post.data.date)}
   </time>
+  {post.data.tags.length > 0 && (
+    <ul class="tag-list">
+      {post.data.tags.map((tag) => (
+        <li><a class="tag" href={`/posts/tag/${encodeURIComponent(tag)}`}>{tag}</a></li>
+      ))}
+    </ul>
+  )}
   <div class="prose">
     <Content />
   </div>

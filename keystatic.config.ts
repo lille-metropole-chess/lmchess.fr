@@ -19,6 +19,10 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: 'Title' } }),
         date: fields.date({ label: 'Date de publication', defaultValue: { kind: 'today' } }),
+        tags: fields.array(
+          fields.text({ label: 'Tag' }),
+          { label: 'Tags', itemLabel: (props) => props.value || 'Tag' }
+        ),
         content: fields.markdoc({
           label: 'Content',
           options: {

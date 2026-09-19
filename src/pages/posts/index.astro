@@ -58,6 +58,13 @@ const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
             </time>
           </p>
           <p class="blog-excerpt">{postExcerpt(post.body)}</p>
+          {post.data.tags.length > 0 && (
+            <ul class="tag-list">
+              {post.data.tags.map((tag) => (
+                <li><a class="tag" href={`/posts/tag/${encodeURIComponent(tag)}`}>{tag}</a></li>
+              ))}
+            </ul>
+          )}
           <a class="blog-read-more" href={`/posts/${post.id}`}>Lire l'article complet →</a>
         </li>
       ))}

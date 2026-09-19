@@ -305,6 +305,34 @@ h1 {
 	text-decoration: underline;
 }
 
+.tag-list {
+	list-style: none;
+	margin: 0 0 12px;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.tag {
+	display: inline-block;
+	padding: 2px 10px;
+	border: 1px solid rgba(184, 56, 43, .3);
+	border-radius: 999px;
+	color: #b8382b;
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-decoration: none;
+	background: rgba(184, 56, 43, .06);
+	transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.tag:hover,
+.tag:focus-visible {
+	background: rgba(184, 56, 43, .12);
+	border-color: #b8382b;
+}
+
 .newcomers-section {
 	max-width: 720px;
 	margin: 40px auto 48px;

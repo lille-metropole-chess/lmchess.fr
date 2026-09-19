@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { postExcerpt } from '../../../lib/text';
+import { getUniqueTags } from '../../../lib/tags';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return getUniqueTags(posts).map((tag) => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+const decodedTag = tag ?? '';
+const posts = (await getCollection('posts'))
+  .filter((p) => p.data.tags.includes(decodedTag))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Layout title={`Blog - Tag "${decodedTag}" - Lille Métropole Chess`}>
+
+  <h1>Tag : {decodedTag}</h1>
+  <p><a href="/posts">← Retour au blog</a></p>
+
+  {posts.length === 0 ? (
+    <p class="no-results">Aucun post pour ce tag.</p>
+  ) : (
+    <ul class="blog-list">
+      {posts.map((post) => (
+        <li class="blog-card">
+          <h2 class="blog-title">{post.data.title}</h2>
+          <p class="blog-meta">
+            Publié le{' '}
+            <time datetime={post.data.date.toISOString()}>
+              {dateFormatter.format(post.data.date)}
+            </time>
+          </p>
+          <p class="blog-excerpt">{postExcerpt(post.body)}</p>
+          {post.data.tags.length > 0 && (
+            <ul class="tag-list">
+              {post.data.tags.map((t) => (
+                <li><a class="tag" href={`/posts/tag/${encodeURIComponent(t)}`}>{t}</a></li>
+              ))}
+            </ul>
+          )}
+          <a class="blog-read-more" href={`/posts/${post.id}`}>Lire l'article complet →</a>
+        </li>
+      ))}
+    </ul>
+  )}
+
+</Layout>
