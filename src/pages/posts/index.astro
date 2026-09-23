@@ -2,12 +2,15 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { postExcerpt } from '../../lib/text';
+import { getUniqueTags } from '../../lib/tags';
 
 export const prerender = true;
 
 const posts = (await getCollection('posts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+
+const allTags = getUniqueTags(posts).sort((a, b) => a.localeCompare(b, 'fr'));
 
 const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
   day: 'numeric',
@@ -38,6 +41,12 @@ const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
           <span class="newcomers-arrow">→</span>
         </a>
       </li>
+      <li>
+        <a class="newcomers-link" href="/accueil/charte_competition_equipe.pdf" target="_blank" rel="noopener">
+          Charte de participation aux compétitions par équipes
+          <span class="newcomers-arrow">→</span>
+        </a>
+      </li>
     </ul>
   </section>
 
@@ -45,28 +54,87 @@ const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
   {posts.length === 0 ? (
     <p class="no-results">Aucun post n'a été publié pour le moment.</p>
   ) : (
-    <ul class="blog-list">
-      {posts.map((post) => (
-        <li class="blog-card">
-          <h2 class="blog-title">{post.data.title}</h2>
-          <p class="blog-meta">
-            Publié le{' '}
-            <time datetime={post.data.date.toISOString()}>
-              {dateFormatter.format(post.data.date)}
-            </time>
-          </p>
-          <p class="blog-excerpt">{postExcerpt(post.body)}</p>
-          {post.data.tags.length > 0 && (
-            <ul class="tag-list">
-              {post.data.tags.map((tag) => (
-                <li><a class="tag" href={`/posts/tag/${encodeURIComponent(tag)}`}>{tag}</a></li>
-              ))}
-            </ul>
-          )}
-          <a class="blog-read-more" href={`/posts/${post.id}`}>Lire l'article complet →</a>
-        </li>
-      ))}
-    </ul>
+    <>
+      {allTags.length > 0 && (
+        <div class="tag-filter" id="tag-filter" role="group" aria-label="Filtrer par tag">
+          <button type="button" class="tag-filter-btn active" data-tag="">Tous</button>
+          {allTags.map((tag) => (
+            <button type="button" class="tag-filter-btn" data-tag={tag}>{tag}</button>
+          ))}
+        </div>
+      )}
+
+      <ul class="blog-list" id="blog-list">
+        {posts.map((post) => (
+          <li class="blog-card" data-tags={post.data.tags.join('|')}>
+            <h2 class="blog-title">{post.data.title}</h2>
+            <p class="blog-meta">
+              Publié le{' '}
+              <time datetime={post.data.date.toISOString()}>
+                {dateFormatter.format(post.data.date)}
+              </time>
+            </p>
+            <p class="blog-excerpt">{postExcerpt(post.body)}</p>
+            {post.data.tags.length > 0 && (
+              <ul class="tag-list">
+                {post.data.tags.map((tag) => (
+                  <li><a class="tag" href={`/posts/tag/${encodeURIComponent(tag)}`}>{tag}</a></li>
+                ))}
+              </ul>
+            )}
+            <a class="blog-read-more" href={`/posts/${post.id}`}>Lire l'article complet →</a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="no-results" id="tag-filter-empty" hidden>Aucun post pour ce tag.</p>
+    </>
   )}
 
 </Layout>
+
+<script>
+  const tagFilter = document.getElementById('tag-filter');
+  const blogList = document.getElementById('blog-list');
+  const emptyMessage = document.getElementById('tag-filter-empty');
+
+  if (tagFilter && blogList) {
+    const buttons = Array.from(tagFilter.querySelectorAll<HTMLButtonElement>('.tag-filter-btn'));
+    const cards = Array.from(blogList.querySelectorAll<HTMLLIElement>('.blog-card'));
+
+    function applyFilter(tag: string) {
+      let visibleCount = 0;
+      for (const card of cards) {
+        const tags = (card.dataset.tags ?? '').split('|').filter(Boolean);
+        const visible = tag === '' || tags.includes(tag);
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      }
+      if (emptyMessage) emptyMessage.hidden = visibleCount > 0;
+
+      for (const button of buttons) {
+        button.classList.toggle('active', button.dataset.tag === tag);
+      }
+    }
+
+    tagFilter.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>('.tag-filter-btn');
+      if (!button) return;
+      const tag = button.dataset.tag ?? '';
+      applyFilter(tag);
+
+      const url = new URL(window.location.href);
+      if (tag) {
+        url.searchParams.set('tag', tag);
+      } else {
+        url.searchParams.delete('tag');
+      }
+      window.history.replaceState({}, '', url);
+    });
+
+    const initialTag = new URL(window.location.href).searchParams.get('tag') ?? '';
+    if (initialTag && buttons.some((b) => b.dataset.tag === initialTag)) {
+      applyFilter(initialTag);
+    }
+  }
+</script>

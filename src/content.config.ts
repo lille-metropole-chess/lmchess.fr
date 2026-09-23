@@ -1,6 +1,7 @@
 // @ts-ignore
 import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { formatFrenchDate } from './lib/dates';
 
 const posts = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/posts' }),
@@ -52,12 +53,20 @@ const keyInfoSchema = z.object({
   value: z.string(),
 });
 
+// Accepts either a free-text date ("19-23 Octobre 2026") or a bare ISO date
+// (Keystatic writes YAML dates like 2026-09-26, which js-yaml parses as a
+// Date object) and normalizes both to the free-text display format.
+const dateSchema = z
+  .union([z.string(), z.date()])
+  .transform((value) => (typeof value === 'string' ? value : formatFrenchDate(value)))
+  .optional();
+
 const tournaments = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/tournaments' }),
   schema: z.object({
     name: z.string(),
     tourEditionSlug: z.string().optional(),
-    date: z.string().optional(),
+    date: dateSchema,
     rounds: z.number().optional(),
     results: z.array(resultSchema).default([]),
     poster: z.string().optional(),

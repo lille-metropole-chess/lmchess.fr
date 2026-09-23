@@ -333,6 +333,39 @@ h1 {
 	border-color: #b8382b;
 }
 
+.tag-filter {
+	max-width: 720px;
+	margin: 0 auto 24px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.tag-filter-btn {
+	display: inline-block;
+	padding: 4px 14px;
+	border: 1px solid rgba(184, 56, 43, .3);
+	border-radius: 999px;
+	background: #fff;
+	color: #b8382b;
+	font-size: 0.85rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.tag-filter-btn:hover,
+.tag-filter-btn:focus-visible {
+	background: rgba(184, 56, 43, .12);
+	border-color: #b8382b;
+}
+
+.tag-filter-btn.active {
+	background: #b8382b;
+	border-color: #b8382b;
+	color: #fff;
+}
+
 .newcomers-section {
 	max-width: 720px;
 	margin: 40px auto 48px;
@@ -1473,9 +1506,97 @@ html {
 	font-size: 0.85rem;
 }
 
+/* --- 5. Actualités (cartes) ----------------------------------------------- */
 
+.lp-news {
+	margin-bottom: clamp(56px, 8vw, 96px);
+}
 
+.lp-news-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px 24px;
+	margin-bottom: 24px;
+}
 
+.lp-news-head .lp-section-title {
+	margin: 0;
+}
+
+.lp-news-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 24px;
+}
+
+.lp-news-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 24px;
+	border: 1px solid rgba(0,0,0,.12);
+	border-radius: 8px;
+	color: #111;
+	text-decoration: none;
+	transition: background .15s ease, border-color .15s ease;
+}
+
+.lp-news-card:hover,
+.lp-news-card:focus-visible {
+	background: #faf6f5;
+	border-color: rgba(0,0,0,.2);
+}
+
+.lp-news-card:focus-visible {
+	outline: 2px solid #b8382b;
+	outline-offset: 2px;
+}
+
+.lp-news-date {
+	color: #b8382b;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.lp-news-title-text {
+	margin-top: 10px;
+	font-family: 'Playfair Display', Georgia, serif;
+	font-weight: 700;
+	font-size: 1.2rem;
+	line-height: 1.3;
+}
+
+.lp-news-excerpt {
+	margin-top: 10px;
+	color: #444;
+	font-size: 0.92rem;
+	line-height: 1.55;
+	flex-grow: 1;
+}
+
+.lp-news-arrow {
+	margin-top: 16px;
+	color: #b8382b;
+	font-weight: 700;
+	transition: transform .15s ease;
+}
+
+.lp-news-card:hover .lp-news-arrow {
+	transform: translateX(4px);
+}
+
+@media (max-width: 800px) {
+	.lp-news-list {
+		grid-template-columns: 1fr;
+	}
+}
 
 
 

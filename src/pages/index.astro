@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { resolveAsset } from '../lib/images';
 import { tournamentDateValue } from '../lib/dates';
+import { postExcerpt } from '../lib/text';
 
 export const prerender = true;
 
@@ -12,6 +13,16 @@ const HELLOASSO = 'https://www.helloasso.com/associations/lille-metropole-chess'
 const chessTours = await getCollection('chessTours');
 chessTours.sort((a, b) => b.id.localeCompare(a.id));
 const currentTour = chessTours[0];
+
+const latestPosts = (await getCollection('posts'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const postDateFormatter = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
 
 // Posters carry this band. A tournament without one still shows up, by name.
 const tourTournaments = currentTour
@@ -117,6 +128,31 @@ const doors = [
                 <span class="lp-poster-name">{t.name}</span>
                 {t.date && <span class="lp-poster-date">{t.date}</span>}
               </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {latestPosts.length > 0 && (
+    <section class="lp-news" aria-labelledby="lp-news-title">
+      <div class="lp-news-head">
+        <h2 id="lp-news-title" class="lp-section-title">Actualités du club</h2>
+        <a class="lp-btn-quiet" href="/posts">Tout le blog</a>
+      </div>
+      <ul class="lp-news-list">
+        {latestPosts.map((post) => (
+          <li>
+            <a class="lp-news-card" href={`/posts/${post.id}`}>
+              <span class="lp-news-date">
+                <time datetime={post.data.date.toISOString()}>
+                  {postDateFormatter.format(post.data.date)}
+                </time>
+              </span>
+              <span class="lp-news-title-text">{post.data.title}</span>
+              <span class="lp-news-excerpt">{postExcerpt(post.body)}</span>
+              <span class="lp-news-arrow" aria-hidden="true">→</span>
             </a>
           </li>
         ))}

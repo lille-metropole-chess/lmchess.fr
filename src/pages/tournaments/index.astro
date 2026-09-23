@@ -2,12 +2,16 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import TournamentTable from '../../components/TournamentTable.astro';
+import { tournamentDateValue } from '../../lib/dates';
 
 export const prerender = true;
 
-// ponytail: content order for now, see the note in chess-tours/[slug].astro.
-// Sorting moves into the table itself in the next pass.
-const tournaments = await getCollection('tournaments', (t) => !t.data.tourEditionSlug);
+const allTournaments = await getCollection('tournaments', (t) => !t.data.tourEditionSlug);
+
+// Soonest first, undated tournaments last; keep only the 10 most recent.
+const tournaments = allTournaments
+  .sort((a, b) => tournamentDateValue(a.data.date) - tournamentDateValue(b.data.date))
+  .slice(0, 10);
 ---
 
 <Layout title="Tournois et compétitions ordinaires - Lille Métropole Chess">
