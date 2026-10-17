@@ -17,6 +17,8 @@ const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
   year: 'numeric',
 });
 
+const isHalloween = post.data.tags.includes('Halloween');
+
 // Generate static pages
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -25,18 +27,29 @@ export async function getStaticPaths() {
 ---
 
 <Layout title={post.data.title}>
-  <h1>{post.data.title}</h1>
-  <time class="blog-date" datetime={post.data.date.toISOString()}>
-    {dateFormatter.format(post.data.date)}
-  </time>
-  {post.data.tags.length > 0 && (
-    <ul class="tag-list">
-      {post.data.tags.map((tag) => (
-        <li><a class="tag" href={`/posts/tag/${encodeURIComponent(tag)}`}>{tag}</a></li>
-      ))}
-    </ul>
-  )}
-  <div class="prose">
-    <Content />
+  <div class:list={['post-body', isHalloween && 'halloween-post']}>
+    {isHalloween && (
+      <div class="halloween-fx" aria-hidden="true">
+        <span class="moon">🌕</span>
+        <span class="bat bat-1">🦇</span>
+        <span class="bat bat-2">🦇</span>
+        <span class="bat bat-3">🦇</span>
+        <span class="ghost">👻</span>
+      </div>
+    )}
+    <h1>{post.data.title}</h1>
+    <time class="blog-date" datetime={post.data.date.toISOString()}>
+      {dateFormatter.format(post.data.date)}
+    </time>
+    {post.data.tags.length > 0 && (
+      <ul class="tag-list">
+        {post.data.tags.map((tag) => (
+          <li><a class="tag" href={`/posts/tag/${encodeURIComponent(tag)}`}>{tag}</a></li>
+        ))}
+      </ul>
+    )}
+    <div class="prose">
+      <Content />
+    </div>
   </div>
 </Layout>

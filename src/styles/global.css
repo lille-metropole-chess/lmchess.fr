@@ -1829,3 +1829,169 @@ a.lp-partner-card:focus-visible {
 	height: auto;
 	object-fit: contain;
 }
+
+/* --- Halloween post theme (applied only to posts tagged "Halloween") ---- */
+
+.halloween-post {
+	position: relative;
+	overflow: hidden;
+	margin: 0 0 32px;
+	padding: 32px 24px 40px;
+	border-radius: 16px;
+	background:
+		radial-gradient(circle at 85% 10%, rgba(255, 140, 40, .35), transparent 42%),
+		linear-gradient(160deg, #1a0f24 0%, #0d0817 55%, #140b1f 100%);
+	color: #f1e6d2;
+	box-shadow:
+		0 0 0 1px rgba(255, 140, 40, .25),
+		0 24px 60px rgba(0, 0, 0, .45),
+		inset 0 0 80px rgba(130, 50, 180, .15);
+}
+
+.halloween-post .blog-date {
+	color: #c9b8d6;
+}
+
+.halloween-post .tag-list .tag {
+	background: rgba(255, 140, 40, .15);
+	color: #ffd199;
+	border: 1px solid rgba(255, 140, 40, .4);
+}
+
+.halloween-post .tag-list .tag:hover,
+.halloween-post .tag-list .tag:focus-visible {
+	background: rgba(255, 140, 40, .28);
+}
+
+.halloween-post > h1 {
+	position: relative;
+	z-index: 1;
+	color: #ff9d3d;
+	text-shadow: 0 0 12px rgba(255, 140, 40, .65), 0 0 28px rgba(255, 80, 20, .4);
+	animation: halloween-flicker 4s infinite ease-in-out;
+}
+
+.halloween-post .prose {
+	position: relative;
+	z-index: 1;
+}
+
+.halloween-post .prose,
+.halloween-post .prose p,
+.halloween-post .prose li {
+	color: #ece2d2;
+}
+
+.halloween-post .prose h2,
+.halloween-post .prose h3,
+.halloween-post .prose h4 {
+	color: #ffb25c;
+	text-shadow: 0 0 10px rgba(255, 140, 40, .4);
+}
+
+.halloween-post .prose a {
+	color: #ffcf7a;
+	text-decoration-color: rgba(255, 140, 40, .5);
+}
+
+.halloween-post .prose strong {
+	color: #ffd9a0;
+}
+
+.halloween-post .prose hr {
+	border-color: rgba(255, 140, 40, .25);
+}
+
+.halloween-post .prose th {
+	background: rgba(255, 140, 40, .12);
+	color: #ffdca8;
+}
+
+.halloween-post .prose th,
+.halloween-post .prose td {
+	border-color: rgba(255, 140, 40, .2);
+}
+
+.halloween-post .prose blockquote {
+	border-left: 3px solid rgba(255, 140, 40, .5);
+	color: #d9c9e8;
+}
+
+@keyframes halloween-flicker {
+	0%, 100% { opacity: 1; }
+	45% { opacity: .85; }
+	50% { opacity: 1; }
+	55% { opacity: .9; }
+}
+
+/* Anchored to the top of the post as a fixed-height "hero" band, rather
+   than inset:0 over the whole article — posts can be very long, and
+   percentage-based positions would scatter the bats/ghost far down the
+   page instead of keeping them near the title where they're seen. */
+.halloween-fx {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 260px;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.halloween-fx .moon {
+	position: absolute;
+	top: 18px;
+	right: 28px;
+	font-size: clamp(2rem, 6vw, 3.2rem);
+	filter: drop-shadow(0 0 18px rgba(255, 210, 140, .55));
+	opacity: .9;
+}
+
+.halloween-fx .bat {
+	position: absolute;
+	left: -10%;
+	font-size: 1.4rem;
+	opacity: .95;
+	filter: drop-shadow(0 0 6px rgba(255, 170, 90, .5));
+	animation-name: halloween-fly;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.halloween-fx .bat-1 { top: 130px; font-size: 1.5rem; animation-duration: 14s; animation-delay: 0s; }
+.halloween-fx .bat-2 { top: 180px; font-size: 1.2rem; animation-duration: 19s; animation-delay: 3s; }
+.halloween-fx .bat-3 { top: 155px; font-size: 1.9rem; animation-duration: 23s; animation-delay: 7s; }
+
+@keyframes halloween-fly {
+	0%   { transform: translate(0, 0) scale(1); }
+	50%  { transform: translate(60vw, 18px) scale(1.05); }
+	100% { transform: translate(130vw, -6px) scale(1); }
+}
+
+.halloween-fx .ghost {
+	position: absolute;
+	bottom: 16px;
+	left: 6%;
+	font-size: 2rem;
+	opacity: .5;
+	animation: halloween-float 6s ease-in-out infinite;
+}
+
+@keyframes halloween-float {
+	0%, 100% { transform: translateY(0) translateX(0); opacity: .35; }
+	50% { transform: translateY(-18px) translateX(10px); opacity: .6; }
+}
+
+@media (max-width: 640px) {
+	.halloween-fx .moon { font-size: 2rem; top: 10px; right: 16px; }
+	.halloween-fx .bat-3 { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.halloween-post > h1,
+	.halloween-fx .bat,
+	.halloween-fx .ghost {
+		animation: none;
+	}
+}
