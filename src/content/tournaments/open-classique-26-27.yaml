@@ -4,4 +4,802 @@ poster: /chesstours/26_27/open.jpeg
 helloAssoUrl: https://www.helloasso.com/associations/lille-metropole-chess/evenements/1er-open-classique-international
 date: 19-23 Octobre 2026
 rounds: 7
-ffeResultsUrl: ""
+ffeResultsUrl: "https://www.echecs.asso.fr/Resultats.aspx?URL=Tournois/Id/72496\
+  /72496&Action=Cl"
+results:
+  - place: 1
+    name: SUMETS Andrey
+    rating: 2486
+    category: SenM
+    club: Echiquier de Franconville
+    score: 6
+  - place: 2
+    name: GUIDARELLI Laurent
+    rating: 2464
+    category: SenM
+    club: Cergy Pontoise Echecs
+    score: 6
+  - place: 3
+    name: ORIEUX Etienne
+    rating: 2272
+    category: SenM
+    club: Lille Université Club Echiquier du Nord
+    score: 6
+  - place: 4
+    name: IKONNIKOV Vyacheslav
+    rating: 2460
+    category: SepM
+    club: L'Echiquier du Rhin Gambsheim
+    score: 5.5
+  - place: 5
+    name: EUGENE Floryan
+    rating: 2516
+    category: SenM
+    club: L'Echiquier Châlonnais
+    score: 5.5
+  - place: 6
+    name: SCHIPPKE Manon
+    rating: 2281
+    category: JunF
+    club: Asnières - Le Grand Echiquier
+    score: 5.5
+  - place: 7
+    name: GATINEAU Yovann
+    rating: 2376
+    category: SenM
+    club: Mulhouse Philidor
+    score: 5.5
+  - place: 8
+    name: IGLESIAS Yosha
+    rating: 2254
+    category: SenF
+    club: Cergy Pontoise Echecs
+    score: 5.5
+  - place: 9
+    name: FRUCHARD Cyrille
+    rating: 2342
+    category: SenM
+    club: La Dame Noire
+    score: 5
+  - place: 10
+    name: SENTHIL MARAN K
+    rating: 2297
+    category: SenM
+    score: 5
+  - place: 11
+    name: VLANDAS Baptiste
+    rating: 2139
+    category: CadM
+    club: Cercle D'Echecs de Marcq et Lys
+    score: 5
+  - place: 12
+    name: ARCELIN Gael
+    rating: 2272
+    category: SenM
+    club: Lille Université Club Echiquier du Nord
+    score: 5
+  - place: 13
+    name: MATHAN Priyaen
+    rating: 1949
+    category: JunM
+    score: 5
+  - place: 14
+    name: DEHESDIN Wilfried
+    rating: 2071
+    category: SepM
+    club: C.E.de St Just - Les Tours Infernales
+    score: 5
+  - place: 15
+    name: BLANCHET Mathieu
+    rating: 2146
+    category: SenM
+    club: Echiquier Henri IV Pau
+    score: 5
+  - place: 16
+    name: LE BLANC CONDE Evgeny
+    rating: 2092
+    category: MinM
+    club: L'Echiquier Châlonnais
+    score: 5
+  - place: 17
+    name: BITBOL-DELAVEYNE Maelan
+    rating: 2151
+    category: SenM
+    club: Les Tours des Hauts de France - St Quen…
+    score: 5
+  - place: 18
+    name: CORDENIER Basile
+    rating: 1964
+    category: PupM
+    club: Tourcoing Echecs Club
+    score: 5
+  - place: 19
+    name: GOWTHAM K K
+    rating: 2081
+    category: SenM
+    score: 5
+  - place: 20
+    name: PUCHER Sebastien
+    rating: 2158
+    category: SenM
+    club: Club d'Echecs Metz Fischer
+    score: 5
+  - place: 21
+    name: DUPONT Arthur
+    rating: 2100
+    category: SenM
+    club: La Tour Basilienne
+    score: 5
+  - place: 22
+    name: IOLIS Oleg
+    rating: 2127
+    category: VetM
+    score: 4.5
+  - place: 23
+    name: WILEY Tom E
+    rating: 2094
+    category: SepM
+    club: Club 608 d'Echecs Paris
+    score: 4.5
+  - place: 24
+    name: VERROUST Valentin
+    rating: 1985
+    category: MinM
+    club: Club d'Echecs de Saint-Maur
+    score: 4.5
+  - place: 25
+    name: LUMINET Denis
+    rating: 2163
+    category: VetM
+    score: 4.5
+  - place: 26
+    name: DUQUESNE Adrien
+    rating: 1957
+    category: MinM
+    club: Lille Université Club Echiquier du Nord
+    score: 4.5
+  - place: 27
+    name: ALIDIS Myron
+    rating: 2184
+    category: MinM
+    club: Fontainebleau-Avon
+    score: 4.5
+  - place: 28
+    name: BIANCHI Guillaume
+    rating: 2115
+    category: SepM
+    club: Club d'Echecs d'Isbergues - La Tour Inf…
+    score: 4.5
+  - place: 29
+    name: STIEVENARD Noah
+    rating: 1737
+    category: SenM
+    club: Tourcoing Echecs Club
+    score: 4.5
+  - place: 30
+    name: PUCHER Olivier
+    rating: 2246
+    category: SenM
+    club: Lille Métropole Chess
+    score: 4.5
+  - place: 31
+    name: RAMBAUT Anthony
+    rating: 2028
+    category: SenM
+    club: Echiquier Henri IV Pau
+    score: 4.5
+  - place: 32
+    name: CUSTOZA Georges-Emmanuel
+    rating: 1932
+    category: BenM
+    club: Lille Université Club Echiquier du Nord
+    score: 4.5
+  - place: 33
+    name: VAROQUIER Romain
+    rating: 2203
+    category: SenM
+    club: L'Echiquier Châlonnais
+    score: 4.5
+  - place: 34
+    name: SHAMANAURI Nino
+    rating: 1894
+    category: SepF
+    club: Club d'Echecs Metz Fischer
+    score: 4.5
+  - place: 35
+    name: MESSALI ANGER Ilyana
+    rating: 1850
+    category: BenF
+    club: Nomad' Echecs
+    score: 4.5
+  - place: 36
+    name: DUBOIS Selene
+    rating: 1654
+    category: BenF
+    club: Club d'Echecs de Saint-Maur
+    score: 4.5
+  - place: 37
+    name: DESSENNE Francois
+    rating: 1922
+    category: SepM
+    club: C.E. Neuville-en-Ferrain
+    score: 4.5
+  - place: 38
+    name: VALLET Hadrien
+    rating: 1932
+    category: JunM
+    club: Stanislas Echecs
+    score: 4
+  - place: 39
+    name: CORRAL NEHAMA Leo
+    rating: 2200
+    category: MinM
+    club: Tremblay Athletique Club - TAC Echecs
+    score: 4
+  - place: 40
+    name: GILLET Damien
+    rating: 1735
+    category: SenM
+    club: Malbodium Chess Club
+    score: 4
+  - place: 41
+    name: VASSEUR Joachim
+    rating: 1973
+    category: BenM
+    club: Reims Echec et Mat
+    score: 4
+  - place: 42
+    name: CHAIGNET Lucas
+    rating: 1951
+    category: SenM
+    club: Tour Blanche Echecs
+    score: 4
+  - place: 43
+    name: CHAUVIN Antoine
+    rating: 1905
+    category: SenM
+    club: Asnières - Le Grand Echiquier
+    score: 4
+  - place: 44
+    name: TIQUET-DO Corentin
+    rating: 1838
+    category: BenM
+    club: Tourcoing Echecs Club
+    score: 4
+  - place: 45
+    name: FRUCHARD Alois
+    rating: 1799
+    category: SenM
+    club: L'Echiquier du Roy René
+    score: 4
+  - place: 46
+    name: LAFITTE Remi
+    rating: 1899
+    category: SenM
+    club: Lille Métropole Chess
+    score: 4
+  - place: 47
+    name: VIEIRA Daniel
+    rating: 1863
+    category: SenM
+    score: 4
+  - place: 48
+    name: GHOMRANI Nasser
+    rating: 1825
+    category: SenM
+    club: Le 16 Anjou Chess Club
+    score: 4
+  - place: 49
+    name: LUCIDARME Damien
+    rating: 1943
+    category: SepM
+    club: Saint André - Echec et Mat
+    score: 4
+  - place: 50
+    name: PASCAL Joseph
+    rating: 1837
+    category: BenM
+    club: Tourcoing Echecs Club
+    score: 4
+  - place: 51
+    name: SUNER Kais Emin
+    rating: 1829
+    category: PupM
+    club: Lille Université Club Echiquier du Nord
+    score: 4
+  - place: 52
+    name: ETEMADZADEH Christophe
+    rating: 1918
+    category: SepM
+    club: Les Fous d'Echecs de Lambersart
+    score: 4
+  - place: 53
+    name: TRIBOUT Marius
+    rating: 1990
+    category: MinM
+    club: L'Echiquier Châlonnais
+    score: 4
+  - place: 54
+    name: LEGRAND Patrick
+    rating: 1669
+    category: VetM
+    club: Les Fous d'Echecs de Lambersart
+    score: 4
+  - place: 55
+    name: HYSI Ermal
+    rating: 1952
+    category: CadM
+    club: Lille Université Club Echiquier du Nord
+    score: 4
+  - place: 56
+    name: MONISH KRISHNA
+    rating: 1716
+    category: MinM
+    score: 4
+  - place: 57
+    name: VUKOJEVIC FERRARI Viktor
+    rating: 1871
+    category: SenM
+    club: Les Tours Givetoises
+    score: 4
+  - place: 58
+    name: GUSELLA Maxime
+    rating: 1839
+    category: SenM
+    club: Lille Métropole Chess
+    score: 3.5
+  - place: 59
+    name: FOUTREN Vincent
+    rating: 1788
+    category: SenM
+    club: Noisiel Echecs
+    score: 3.5
+  - place: 60
+    name: GUILLERM Mischa
+    rating: 1916
+    category: SenM
+    club: U.S. Orléans.Echecs
+    score: 3.5
+  - place: 61
+    name: COLART Corentin
+    rating: 1873
+    category: SenM
+    club: La Tour Basilienne
+    score: 3.5
+  - place: 62
+    name: HOULLIER Guilhem
+    rating: 1875
+    category: SenM
+    club: Malbodium Chess Club
+    score: 3.5
+  - place: 63
+    name: FARRINGTON Edward J
+    rating: 1999
+    category: SenM
+    club: Lille Métropole Chess
+    score: 3.5
+  - place: 64
+    name: SEBILLE Pierre
+    rating: 1572
+    category: SenM
+    club: La Tour Basilienne
+    score: 3.5
+  - place: 65
+    name: BERKI Liam
+    rating: 1780
+    category: SenM
+    club: Lille Métropole Chess
+    score: 3.5
+  - place: 66
+    name: DAHAOUI Adam
+    rating: 1689
+    category: BenM
+    club: L'Echiquier Châlonnais
+    score: 3.5
+  - place: 67
+    name: MARIE Leon
+    rating: 1897
+    category: SenM
+    club: Lille Université Club Echiquier du Nord
+    score: 3.5
+  - place: 68
+    name: GILLE Gabriel
+    rating: 1628
+    category: MinM
+    club: L'Echiquier Châlonnais
+    score: 3.5
+  - place: 69
+    name: MALLEVAEY Armand
+    rating: 1953
+    category: SenM
+    club: L'Echiquier Cappellois
+    score: 3.5
+  - place: 70
+    name: THOMAS Didier
+    rating: 1772
+    category: SepM
+    club: Cercle d'Echecs de Courbevoie
+    score: 3.5
+  - place: 71
+    name: NAVEL Jean-Yves
+    rating: 1841
+    category: VetM
+    club: Les Tours des Hauts de France - St Quen…
+    score: 3.5
+  - place: 72
+    name: POTIER Jules
+    rating: 1754
+    category: MinM
+    club: Armentieres Mat 88
+    score: 3.5
+  - place: 73
+    name: MEUNIER Alexis
+    rating: 1775
+    category: SenM
+    club: Les Tours Givetoises
+    score: 3
+  - place: 74
+    name: CAMBLOR Ludovic
+    rating: 1829
+    category: VetM
+    club: Lille Métropole Chess
+    score: 3
+  - place: 75
+    name: ZERBIB Claude
+    rating: 1796
+    category: VetM
+    club: C.E. Neuville-en-Ferrain
+    score: 3
+  - place: 76
+    name: VAN DEN BOSCH Philippe
+    rating: 1786
+    category: SepM
+    club: Les Tours des Hauts de France - St Quen…
+    score: 3
+  - place: 77
+    name: CLARI Louis
+    rating: 1630
+    category: BenM
+    club: Tour Blanche Echecs
+    score: 3
+  - place: 78
+    name: BENMADANI Yazid
+    rating: 1759
+    category: SenM
+    club: Tourcoing Echecs Club
+    score: 3
+  - place: 79
+    name: VERHAEGHE Philip
+    rating: 1926
+    category: SepM
+    score: 3
+  - place: 80
+    name: CAUCHY Patrick
+    rating: 1747
+    category: SepM
+    club: Lille Métropole Chess
+    score: 3
+  - place: 81
+    name: BOUDARN Brahim
+    rating: 1705
+    category: SepM
+    club: C.E. Neuville-en-Ferrain
+    score: 3
+  - place: 82
+    name: MAGNIE Moise
+    rating: 1990
+    category: SepM
+    club: Cercle d'Echecs de Fournes en Weppes
+    score: 3
+  - place: 83
+    name: LE BRIS Louis
+    rating: 1793
+    category: SepM
+    club: Malakoff et Mat
+    score: 3
+  - place: 84
+    name: CANTAGREL Thomas
+    rating: 1810
+    category: MinM
+    club: Club d'Echecs d'Avoine
+    score: 3
+  - place: 85
+    name: PERZ Jean-Pierre
+    rating: 1644
+    category: VetM
+    club: Cercle d'Echecs de Fournes en Weppes
+    score: 3
+  - place: 86
+    name: DAVOUST Nicolas
+    rating: 2023
+    category: CadM
+    club: Asnières - Le Grand Echiquier
+    score: 3
+  - place: 87
+    name: REMONDI Laurent
+    rating: 1705
+    category: SepM
+    club: Lille Métropole Chess
+    score: 3
+  - place: 88
+    name: DVORSAK Hans
+    rating: 1755
+    category: VetM
+    club: Lille Université Club Echiquier du Nord
+    score: 3
+  - place: 89
+    name: PALANICHAMY Riyaan
+    rating: 1580
+    category: PupM
+    club: L'Echiquier Châlonnais
+    score: 3
+  - place: 90
+    name: LI HASKETT Kody
+    rating: 1643
+    category: PouM
+    club: Maubuee-Gondoire Echecs
+    score: 3
+  - place: 91
+    name: FERRARI Emile
+    rating: 1435
+    category: SepM
+    club: Cercle D'Echecs de Marcq et Lys
+    score: 3
+  - place: 92
+    name: CHOMBART Esteban
+    rating: 1399
+    category: SenM
+    club: Lille Métropole Chess
+    score: 3
+  - place: 93
+    name: HOOGEVEEN Luuk
+    rating: 1734
+    category: SepM
+    score: 3
+  - place: 94
+    name: EL MANSOURI Mira
+    rating: 1604
+    category: MinF
+    club: Echiquier Club Le Mans
+    score: 3
+  - place: 95
+    name: LOPEZ MONEDERO Jesus
+    rating: 1654
+    category: SenM
+    score: 3
+  - place: 96
+    name: CHITRIT Norbert
+    rating: 1651
+    category: VetM
+    club: Carré Magique
+    score: 3
+  - place: 97
+    name: TEZANOS Gabriel
+    rating: 1606
+    category: SenM
+    score: 3
+  - place: 98
+    name: DESSOMME Francois
+    rating: 1952
+    category: SepM
+    club: Les Tours Givetoises
+    score: 3
+  - place: 99
+    name: CARON Ugo
+    rating: 1399
+    category: SenM
+    club: Lille Métropole Chess
+    score: 2.5
+  - place: 100
+    name: SHVED Jakov
+    rating: 1913
+    category: SenM
+    club: Cercle D'Echecs de Marcq et Lys
+    score: 2.5
+  - place: 101
+    name: COLIN Gerard
+    rating: 1626
+    category: VetM
+    club: Lille Métropole Chess
+    score: 2.5
+  - place: 102
+    name: VAN HOUTTE Thierry
+    rating: 2009
+    category: VetM
+    score: 2.5
+  - place: 103
+    name: GODON Alexandre
+    rating: 1538
+    category: SenM
+    club: La Reine Blanche de Sassenage
+    score: 2.5
+  - place: 104
+    name: DUBOIS Achille
+    rating: 1743
+    category: BenM
+    club: Cercle D'Echecs de Marcq et Lys
+    score: 2.5
+  - place: 105
+    name: ADAM Hugo
+    rating: 1503
+    category: CadM
+    club: Tourcoing Echecs Club
+    score: 2.5
+  - place: 106
+    name: ROY Alain
+    rating: 1786
+    category: VetM
+    club: ECHECS 78
+    score: 2.5
+  - place: 107
+    name: MEDO Guy
+    rating: 1512
+    category: VetM
+    club: Fenain et Hornaing Echecs
+    score: 2.5
+  - place: 108
+    name: DJINTCHUI TCHEDIEU Raphael
+    rating: 1636
+    category: BenM
+    club: Noisiel Echecs
+    score: 2
+  - place: 109
+    name: ZOUGGAGHE Saidane
+    rating: 1496
+    category: SenM
+    club: Lille Métropole Chess
+    score: 2
+  - place: 110
+    name: RABETRANO Arthur
+    rating: 1399
+    category: PouM
+    club: AGJA-Echiquier Aquitaine
+    score: 2
+  - place: 111
+    name: FEICHTER Pieter
+    rating: 1399
+    category: SenM
+    club: Lille Métropole Chess
+    score: 2
+  - place: 112
+    name: SUSHRUTHA Reddy
+    rating: 1761
+    category: SenM
+    score: 2
+  - place: 113
+    name: GOZALISHVILI Nikoloz
+    rating: 1498
+    category: PupM
+    club: L'Echiquier Châlonnais
+    score: 2
+  - place: 114
+    name: DUTILLEUL Marc
+    rating: 1613
+    category: SepM
+    club: La Tour Basilienne
+    score: 2
+  - place: 115
+    name: MATHIEU Christophe
+    rating: 1439
+    category: SenM
+    club: Cercle D'Echecs de Marcq et Lys
+    score: 2
+  - place: 116
+    name: BREC Evan
+    rating: 1560
+    category: SenM
+    club: Lille Métropole Chess
+    score: 2
+  - place: 117
+    name: LI HASKETT Mateo
+    rating: 1528
+    category: PupM
+    club: Maubuee-Gondoire Echecs
+    score: 2
+  - place: 118
+    name: MILETTO Nathan
+    rating: 1515
+    category: SenM
+    club: Lille Métropole Chess
+    score: 2
+  - place: 119
+    name: DUBOIS Arsene
+    rating: 1573
+    category: PouM
+    club: Cercle D'Echecs de Marcq et Lys
+    score: 2
+  - place: 120
+    name: BORTIER Marc
+    rating: 1421
+    category: VetM
+    club: La Tour Basilienne
+    score: 2
+  - place: 121
+    name: MELIKYAN Milan
+    rating: 1402
+    category: PupM
+    club: L'Echiquier Châlonnais
+    score: 2
+  - place: 122
+    name: COLLOTTE Pierre
+    rating: 1399
+    category: SepM
+    club: Lille Métropole Chess
+    score: 2
+  - place: 123
+    name: PECHENARD Patrick
+    rating: 1399
+    category: VetM
+    club: Lille Métropole Chess
+    score: 2
+  - place: 124
+    name: GUERRIEN Blandine
+    rating: 1495
+    category: SepF
+    club: Les Fous d'Echecs de Lambersart
+    score: 2
+  - place: 125
+    name: CLARI Julie
+    rating: 1584
+    category: PupF
+    club: Tour Blanche Echecs
+    score: 2
+  - place: 126
+    name: COUSSEMENT Serge
+    rating: 1492
+    category: VetM
+    club: La Dame Blanche de Liévin
+    score: 2
+  - place: 127
+    name: TAHAR-CHAOUCH Fouzia
+    rating: 1443
+    category: SenF
+    club: La Tour Prends Garde!  Henin Beaumont
+    score: 1.5
+  - place: 128
+    name: CAPELAIN Bruno
+    rating: 1420
+    category: VetM
+    club: La Tour Basilienne
+    score: 1
+  - place: 129
+    name: GILET Jean Claude
+    rating: 1399
+    category: VetM
+    club: Blitz Academie
+    score: 1
+  - place: 130
+    name: VERBANCK Mario
+    rating: 1425
+    category: SepM
+    score: 1
+  - place: 131
+    name: POUBLON Lucien
+    rating: 1532
+    category: VetM
+    club: La Dame Blanche de Liévin
+    score: 1
+  - place: 132
+    name: POURRAHNAMA Amir
+    rating: 1875
+    category: SepM
+    club: Cercle D'Echecs de Marcq et Lys
+    score: 1
+  - place: 133
+    name: MIQUELAO ROHRMANN Marcia
+    rating: 1399
+    category: SepF
+    club: Lille Métropole Chess
+    score: 1
+  - place: 134
+    name: DESCATOIRE VLIEGHE Marie Claude
+    rating: 1399
+    category: VetF
+    club: Echiquier d'Erquinghem-Lys
+    score: 0
+  - place: 135
+    name: BACKORY Mike
+    rating: 1399
+    category: SenM
+    club: Lille Métropole Chess
+    score: 0

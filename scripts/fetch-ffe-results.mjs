@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-// Fetches the "grille américaine" standings from the FFE website (echecs.asso.fr,
-// URL with Action=Ga) and writes them into a tournament's `results:` field.
+// Fetches the "classement" standings from the FFE website (echecs.asso.fr,
+// URL with Action=Cl) and writes them into a tournament's `results:` field.
 //
 // Usage:
-//   node scripts/fetch-ffe-results.mjs                # all tournaments with a Ga ffeResultsUrl
+//   node scripts/fetch-ffe-results.mjs                # all tournaments with a Cl ffeResultsUrl
 //   node scripts/fetch-ffe-results.mjs open-classique-26-27  # one tournament, by file/slug
 //
-// Only fields the FFE page actually exposes (place, name, rating, category, score)
-// are overwritten. `fideId` and `club`, which aren't on the grille américaine, are
-// carried over from the existing entry when a name matches.
+// Only fields the FFE page actually exposes (place, name, rating, category, club,
+// score) are overwritten. `fideId`, which isn't on the classement page, is carried
+// over from the existing entry when a name matches.
 
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
@@ -34,7 +34,7 @@ function normalizeName(name) {
   return name.trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
-async function fetchGrilleAmericaine(url) {
+async function fetchClassement(url) {
   const res = await fetch(url, {
     headers: { 'User-Agent': 'Mozilla/5.0 (compatible; lmchess.fr results sync)' },
   });
@@ -44,12 +44,11 @@ async function fetchGrilleAmericaine(url) {
   const html = await res.text();
   const $ = cheerio.load(html);
 
-  // Player rows are the only <tr>s with a direct <td class="papi_l"> child
-  // (the pairing-history table nested inside that cell has its own <tr>s,
-  // but none of them carry a papi_l cell, so this reliably tells them apart).
+  // Player rows are the <tr>s with a direct <td class="papi_l"> child
+  // (columns: Pl, title marker, Nom, Elo, Cat., Fede, Ligue, Club, Pts).
   const rows = $('tr').filter((_, el) => $(el).children('td.papi_l').length > 0);
   if (rows.length === 0) {
-    throw new Error('no player rows found — is this really an Action=Ga (grille américaine) URL?');
+    throw new Error('no player rows found — is this really an Action=Cl (classement) URL?');
   }
 
   const results = [];
@@ -59,10 +58,11 @@ async function fetchGrilleAmericaine(url) {
     const name = $(tds[2]).find('b').first().text().trim();
     const rating = parseRating($(tds[3]).text());
     const category = $(tds[4]).text().trim() || undefined;
-    const score = parseScore($(tds.get(tds.length - 3)).text());
+    const club = $(tds[7]).text().trim() || undefined;
+    const score = parseScore($(tds[8]).text());
 
     if (!name || Number.isNaN(place)) return;
-    results.push({ place, name, rating, category, score });
+    results.push({ place, name, rating, category, club, score });
   });
 
   results.sort((a, b) => a.place - b.place);
@@ -79,7 +79,7 @@ function mergeResults(existing, scraped) {
       name: r.name,
       ...(r.rating !== undefined ? { rating: r.rating } : {}),
       ...(r.category ? { category: r.category } : {}),
-      ...(prev?.club ? { club: prev.club } : {}),
+      ...(r.club ? { club: r.club } : {}),
       score: r.score,
     };
   });
@@ -95,13 +95,13 @@ async function updateTournamentFile(filePath) {
     console.log(`skip ${base} (no ffeResultsUrl)`);
     return;
   }
-  if (!/Action=Ga/i.test(ffeResultsUrl)) {
-    console.log(`skip ${base} (ffeResultsUrl isn't a grille américaine link — expected Action=Ga)`);
+  if (!/Action=Cl/i.test(ffeResultsUrl)) {
+    console.log(`skip ${base} (ffeResultsUrl isn't a classement link — expected Action=Cl)`);
     return;
   }
 
   console.log(`fetching ${base} <- ${ffeResultsUrl}`);
-  const scraped = await fetchGrilleAmericaine(ffeResultsUrl);
+  const scraped = await fetchClassement(ffeResultsUrl);
   const existing = doc.get('results')?.toJSON() ?? [];
   const merged = mergeResults(existing, scraped);
 
