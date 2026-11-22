@@ -51,5 +51,8 @@ export async function getStaticPaths() {
     <div class="prose">
       <Content />
     </div>
+    {post.data.author && (
+      <p class="post-signature">{post.data.author}</p>
+    )}
   </div>
 </Layout>

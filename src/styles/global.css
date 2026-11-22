@@ -225,6 +225,14 @@ h1 {
 	background: rgba(0, 0, 0, .04);
 }
 
+.post-signature {
+	font-family: 'Caveat', 'Playfair Display', cursive;
+	font-size: 2rem;
+	color: #b8382b;
+	text-align: right;
+	margin: 32px 0 0;
+}
+
 /* Chess Tour page */
 
 .tour-intro {

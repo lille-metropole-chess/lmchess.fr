@@ -23,6 +23,7 @@ export default config({
           fields.text({ label: 'Tag' }),
           { label: 'Tags', itemLabel: (props) => props.value || 'Tag' }
         ),
+        author: fields.text({ label: 'Auteur', description: 'Signature affichée en bas de l\'article' }),
         content: fields.markdoc({
           label: 'Content',
           options: {
